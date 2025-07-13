@@ -2,12 +2,12 @@
 
 import { useState } from 'react';
 import { FileText, AlertCircle, CheckCircle } from 'lucide-react';
-import { ProgressBar } from '@/components/decision-tree/ProgressBar';
-import { QuestionCard } from '@/components/decision-tree/QuestionCard';
-import { ResultPanel } from '@/components/decision-tree/ResultPanel';
-import { HistoryList } from '@/components/decision-tree/HistoryList';
-import { WizardLayout } from '@/components/layout/wizardLayout';
-import { WizardConfig } from '@/types/wizardConfig';
+import { ProgressBar }   from '@/components/decision-tree/ProgressBar';
+import { QuestionCard }  from '@/components/decision-tree/QuestionCard';
+import { ResultPanel }   from '@/components/decision-tree/ResultPanel';
+import { HistoryList }   from '@/components/decision-tree/HistoryList';
+import { WizardLayout }  from '@/components/layout/wizardLayout';
+import { WizardConfig }  from '@/types/wizardConfig';
 
 /* ─────────── Types ─────────── */
 type HistoryItem<Q extends string> = {
@@ -17,40 +17,35 @@ type HistoryItem<Q extends string> = {
 };
 
 type Props<
-  Q extends string,
-  R extends string,
+  Q  extends string,
+  R  extends string,
   QT extends { text: string; yes: Q | R; no: Q | R; hint?: string },
   RT extends { verdict: string; message: string; color: string }
-> = {
-  config: WizardConfig<Q, R, QT, RT>;
-};
+> = { config: WizardConfig<Q, R, QT, RT> };
 
 export function Wizard<
-  Q extends string,
-  R extends string,
+  Q  extends string,
+  R  extends string,
   QT extends { text: string; yes: Q | R; no: Q | R; hint?: string },
   RT extends { verdict: string; message: string; color: string }
 >({ config }: Props<Q, R, QT, RT>) {
+
+  /* ---------- State ---------- */
   const [current, setCurrent] = useState<Q | null>('Q1' as Q);
   const [history, setHistory] = useState<HistoryItem<Q>[]>([]);
-  const [result, setResult] = useState<RT | null>(null);
+  const [result , setResult ] = useState<RT | null>(null);
+  const stepsDone             = result ? config.total : history.length;
 
-  const stepsDone = result ? config.total : history.length;
+  /* ---------- Utilitaire ---------- */
+  const getQuestionNumber = (id: Q) => id.replace(/^Q/i, '').toLowerCase();
 
-  /* Q1 → 1 / Q2B → 2b */
-  const getQuestionNumber = (id: Q) =>
-    id.replace(/^Q/i, '').toLowerCase();
-
-  /* ──────── Handlers ──────── */
+  /* ---------- Handlers ---------- */
   const answer = (a: 'yes' | 'no') => {
     if (!current) return;
-    const question = config.questions[current];
-    const next = (a === 'yes' ? question.yes : question.no) as Q | R;
+    const q    = config.questions[current];
+    const next = (a === 'yes' ? q.yes : q.no) as Q | R;
 
-    setHistory((prev) => [
-      ...prev,
-      { question: current, text: question.text, answer: a === 'yes' ? 'Oui' : 'Non' },
-    ]);
+    setHistory(h => [...h, { question: current, text: q.text, answer: a === 'yes' ? 'Oui' : 'Non' }]);
 
     if (next in config.results) {
       setResult(config.results[next as R]);
@@ -61,11 +56,11 @@ export function Wizard<
   };
 
   const goBack = () => {
-    setHistory((prev) => {
-      const copy = [...prev];
-      const last = copy.pop();
+    setHistory(h => {
+      const nh = [...h];
+      const last = nh.pop();
       if (last) setCurrent(last.question);
-      return copy;
+      return nh;
     });
     setResult(null);
   };
@@ -76,11 +71,13 @@ export function Wizard<
     setResult(null);
   };
 
-  /* ──────── UI ──────── */
+  /* ---------- UI ---------- */
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 p-4">
-      {/* En-tête + barre de progression */}
+      {/* Tout le contenu est désormais dans le même conteneur max-w : */}
       <div className="w-full max-w-[800px] mx-auto space-y-6">
+
+        {/* ------ En-tête ------ */}
         <header className="bg-white rounded-lg shadow-lg p-6">
           <div className="flex items-center gap-3 mb-4">
             <FileText className="w-8 h-8 text-indigo-600" />
@@ -95,6 +92,7 @@ export function Wizard<
           </p>
         </header>
 
+        {/* ------ Progression ------ */}
         <section className="bg-white rounded-lg shadow-lg p-4">
           <div className="flex items-center justify-between mb-2 text-sm">
             <span>Progression</span>
@@ -109,37 +107,36 @@ export function Wizard<
           </div>
           <ProgressBar value={stepsDone} max={config.total} />
         </section>
-      </div>
 
-      {/* Zone dynamique (layout fixe) */}
-      <WizardLayout className="mt-8">
-        {current ? (
-          <QuestionCard
-            questionNumber={getQuestionNumber(current)}
-            questionText={config.questions[current].text}
-            hint={config.questions[current].hint}
-            onAnswer={answer}
-            canBack={history.length > 0}
-            onBack={goBack}
+        {/* ------ Zone dynamique ------ */}
+        <WizardLayout className="mt-8">
+          {current ? (
+            <QuestionCard
+              questionNumber={getQuestionNumber(current)}
+              questionText={config.questions[current].text}
+              hint={config.questions[current].hint}
+              onAnswer={answer}
+              canBack={history.length > 0}
+              onBack={goBack}
+            />
+          ) : (
+            result && (
+              <ResultPanel
+                result={result}
+                history={history}
+                onRestart={restart}
+                docTitle={`Rapport de ${config.title}`}
+                fileName={`${config.title.toLowerCase().replace(/\s+/g, '-')}.pdf`}
+              />
+            )
+          )}
+
+          <HistoryList
+            history={history}
+            getQuestionNumber={getQuestionNumber}
           />
-        ) : (
-          result && (
-  <ResultPanel
-    result={result}
-    history={history}
-    onRestart={restart}
-    docTitle={`Rapport de ${config.title}`}        // ex. "Rapport de classification..."
-    fileName={`${config.title.toLowerCase().replace(/\s+/g, '-')}.pdf`} // slug basique
-  />
-)
-
-        )}
-
-        <HistoryList
-          history={history}
-          getQuestionNumber={getQuestionNumber}
-        />
-      </WizardLayout>
+        </WizardLayout>
+      </div>
     </div>
   );
 }
