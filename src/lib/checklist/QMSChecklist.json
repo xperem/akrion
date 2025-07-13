@@ -1,0 +1,470 @@
+{
+  "id": "iso-13485",
+  "title": "Checklist ISO 13485",
+  "subtitle": "Dispositifs médicaux — Systèmes de management de la qualité",
+  "intro": "Vérifiez que votre système qualité est conforme à la norme ISO 13485:2016.",
+  "sections": [
+    {
+      "id": "4",
+      "title": "Système de management de la qualité",
+      "items": [
+        {
+          "id": "4.1.1",
+          "title": "Exigences générales",
+          "description": "Établir, documenter, mettre en œuvre et maintenir un système qualité et en améliorer continuellement l'efficacité.",
+          "regulationRef": "ISO 13485 §4.1.1"
+        },
+        {
+          "id": "4.1.2",
+          "title": "Maîtrise des processus externalisés",
+          "description": "Le fabricant doit maîtriser les processus externalisés impactant la conformité aux exigences applicables.",
+          "regulationRef": "ISO 13485 §4.1.2"
+        },
+        {
+          "id": "4.1.3",
+          "title": "Responsabilités sur les processus externalisés",
+          "description": "Le fabricant conserve la responsabilité de la conformité aux exigences même si les processus sont externalisés.",
+          "regulationRef": "ISO 13485 §4.1.3"
+        },
+        {
+          "id": "4.1.4",
+          "title": "Contrôle des fournisseurs et sous-traitants",
+          "description": "Déterminer les contrôles à appliquer aux sous-traitants et prestataires.",
+          "regulationRef": "ISO 13485 §4.1.4"
+        },
+        {
+          "id": "4.1.5",
+          "title": "Documentation des processus externalisés",
+          "description": "Les accords contractuels doivent inclure les responsabilités et autorités.",
+          "regulationRef": "ISO 13485 §4.1.5"
+        },
+        {
+          "id": "4.1.6",
+          "title": "Maintien de la conformité",
+          "description": "Le fabricant doit s'assurer que les exigences applicables sont respectées à tout moment.",
+          "regulationRef": "ISO 13485 §4.1.6"
+        },
+        {
+          "id": "4.2.1",
+          "title": "Généralités — documentation",
+          "description": "La documentation du SMQ doit inclure une politique qualité, des objectifs, un manuel qualité, des procédures, et les enregistrements nécessaires.",
+          "regulationRef": "ISO 13485 §4.2.1"
+        },
+        {
+          "id": "4.2.2",
+          "title": "Manuel qualité",
+          "description": "Le manuel qualité doit décrire l'étendue du système, les procédures documentées ou leur référence, et l'interaction entre les processus.",
+          "regulationRef": "ISO 13485 §4.2.2"
+        },
+        {
+          "id": "4.2.3",
+          "title": "Dossier du dispositif médical",
+          "description": "Le dossier du dispositif médical doit être disponible pour chaque type ou famille de dispositifs fabriqués.",
+          "regulationRef": "ISO 13485 §4.2.3"
+        },
+        {
+          "id": "4.2.4",
+          "title": "Maîtrise des documents",
+          "description": "Les documents requis par le SMQ doivent être maîtrisés, validés, approuvés, et mis à jour de façon appropriée.",
+          "regulationRef": "ISO 13485 §4.2.4"
+        },
+        {
+          "id": "4.2.5",
+          "title": "Maîtrise des enregistrements",
+          "description": "Les enregistrements qualité doivent être établis, tenus à jour, protégés contre la détérioration, et conservés selon les exigences.",
+          "regulationRef": "ISO 13485 §4.2.5"
+        }
+      ]
+    },
+    {
+  "id": "5",
+  "title": "Responsabilité de la direction",
+  "items": [
+    {
+      "id": "5.1",
+      "title": "Engagement de la direction",
+      "description": "La direction doit démontrer son engagement à mettre en œuvre et à améliorer le système de management de la qualité.",
+      "regulationRef": "ISO 13485 §5.1"
+    },
+    {
+      "id": "5.2",
+      "title": "Orientation client",
+      "description": "La direction doit s’assurer que les exigences réglementaires et les besoins des clients sont déterminés et pris en compte.",
+      "regulationRef": "ISO 13485 §5.2"
+    },
+    {
+      "id": "5.3",
+      "title": "Politique qualité",
+      "description": "La direction doit établir une politique qualité appropriée aux objectifs de l’organisme et aux exigences réglementaires.",
+      "regulationRef": "ISO 13485 §5.3"
+    },
+    {
+      "id": "5.4.1",
+      "title": "Objectifs qualité",
+      "description": "La direction doit établir des objectifs mesurables cohérents avec la politique qualité.",
+      "regulationRef": "ISO 13485 §5.4.1"
+    },
+    {
+      "id": "5.4.2",
+      "title": "Planification du SMQ",
+      "description": "La direction doit s’assurer que la planification du système de management de la qualité est conforme aux exigences de la norme.",
+      "regulationRef": "ISO 13485 §5.4.2"
+    },
+    {
+      "id": "5.5.1",
+      "title": "Responsabilité et autorité",
+      "description": "La direction doit définir les responsabilités et autorités au sein de l’organisme.",
+      "regulationRef": "ISO 13485 §5.5.1"
+    },
+    {
+      "id": "5.5.2",
+      "title": "Représentant de la direction",
+      "description": "La direction doit désigner un représentant ayant la responsabilité de s’assurer que les processus sont établis et maintenus.",
+      "regulationRef": "ISO 13485 §5.5.2"
+    },
+    {
+      "id": "5.5.3",
+      "title": "Communication interne",
+      "description": "La direction doit établir des processus de communication internes sur l’efficacité du système de management de la qualité.",
+      "regulationRef": "ISO 13485 §5.5.3"
+    },
+    {
+      "id": "5.6.1",
+      "title": "Revue de direction – Généralités",
+      "description": "La direction doit examiner à intervalles planifiés le SMQ pour s’assurer de sa pertinence et de son efficacité continues.",
+      "regulationRef": "ISO 13485 §5.6.1"
+    },
+    {
+      "id": "5.6.2",
+      "title": "Éléments d’entrée de la revue",
+      "description": "Les entrées de la revue de direction doivent inclure les résultats d’audits, retours client, indicateurs, etc.",
+      "regulationRef": "ISO 13485 §5.6.2"
+    },
+    {
+      "id": "5.6.3",
+      "title": "Éléments de sortie de la revue",
+      "description": "Les sorties de la revue doivent inclure des décisions sur les actions d’amélioration et besoins en ressources.",
+      "regulationRef": "ISO 13485 §5.6.3"
+    }
+  ]
+},
+{
+  "id": "6",
+  "title": "Management des ressources",
+  "items": [
+    {
+      "id": "6.1",
+      "title": "Mise à disposition des ressources",
+      "description": "L’organisme doit déterminer et fournir les ressources nécessaires pour mettre en œuvre et maintenir le SMQ, répondre aux exigences réglementaires et améliorer son efficacité.",
+      "regulationRef": "ISO 13485 §6.1"
+    },
+    {
+      "id": "6.2",
+      "title": "Ressources humaines",
+      "description": "Le personnel affecté à la qualité et à la fabrication des DM doit être compétent, formé et sensibilisé aux exigences applicables.",
+      "regulationRef": "ISO 13485 §6.2"
+    },
+    {
+      "id": "6.3",
+      "title": "Infrastructures",
+      "description": "L’organisme doit déterminer, fournir et entretenir l’infrastructure nécessaire à la conformité des produits, y compris les bâtiments, équipements et services associés.",
+      "regulationRef": "ISO 13485 §6.3"
+    },
+    {
+      "id": "6.4.1",
+      "title": "Environnement de travail",
+      "description": "L’organisme doit gérer les conditions de travail pour garantir la conformité du produit et la sécurité du personnel.",
+      "regulationRef": "ISO 13485 §6.4.1"
+    },
+    {
+      "id": "6.4.2",
+      "title": "Maîtrise de la contamination",
+      "description": "Lorsque cela est requis, l’organisme doit contrôler la contamination du produit ou de l’environnement de travail (ex. DM stériles).",
+      "regulationRef": "ISO 13485 §6.4.2"
+    }
+  ]
+},
+{
+  "id": "7",
+  "title": "Réalisation du produit",
+  "items": [
+    {
+      "id": "7.1",
+      "title": "Planification de la réalisation du produit",
+      "description": "L’organisme doit planifier et développer les processus nécessaires à la réalisation du produit conformément aux exigences du SMQ.",
+      "regulationRef": "ISO 13485 §7.1"
+    },
+    {
+      "id": "7.2.1",
+      "title": "Détermination des exigences relatives au produit",
+      "description": "L’organisme doit déterminer les exigences spécifiées par le client, les exigences réglementaires applicables et toute exigence supplémentaire nécessaire.",
+      "regulationRef": "ISO 13485 §7.2.1"
+    },
+    {
+      "id": "7.2.2",
+      "title": "Revue des exigences relatives au produit",
+      "description": "Les exigences doivent être revues avant tout engagement afin d'assurer leur compréhension et faisabilité.",
+      "regulationRef": "ISO 13485 §7.2.2"
+    },
+    {
+      "id": "7.2.3",
+      "title": "Communication",
+      "description": "L’organisme doit assurer une communication efficace avec les clients, notamment sur les informations produit, les demandes, les contrats et les retours.",
+      "regulationRef": "ISO 13485 §7.2.3"
+    },
+    {
+      "id": "7.3.1",
+      "title": "Conception et développement — Généralités",
+      "description": "L’organisme doit planifier et maîtriser la conception et le développement du produit.",
+      "regulationRef": "ISO 13485 §7.3.1"
+    },
+    {
+      "id": "7.3.2",
+      "title": "Planification de la conception et du développement",
+      "description": "Définir les étapes, les responsabilités, les ressources, et les méthodes pour maîtriser la conception et le développement.",
+      "regulationRef": "ISO 13485 §7.3.2"
+    },
+    {
+      "id": "7.3.3",
+      "title": "Éléments d’entrée de la conception et du développement",
+      "description": "Définir clairement les exigences d’entrée, y compris les exigences fonctionnelles, réglementaires et de performance.",
+      "regulationRef": "ISO 13485 §7.3.3"
+    },
+    {
+      "id": "7.3.4",
+      "title": "Éléments de sortie de la conception et du développement",
+      "description": "Les sorties doivent répondre aux entrées et fournir des informations suffisantes pour l’achat, la production et la maintenance.",
+      "regulationRef": "ISO 13485 §7.3.4"
+    },
+    {
+      "id": "7.3.5",
+      "title": "Revue de la conception et du développement",
+      "description": "Effectuer des revues systématiques à des étapes appropriées pour évaluer si les résultats satisfont aux exigences.",
+      "regulationRef": "ISO 13485 §7.3.5"
+    },
+    {
+      "id": "7.3.6",
+      "title": "Vérification de la conception et du développement",
+      "description": "Confirmer que les sorties de conception répondent aux exigences d’entrée.",
+      "regulationRef": "ISO 13485 §7.3.6"
+    },
+    {
+      "id": "7.3.7",
+      "title": "Validation de la conception et du développement",
+      "description": "S’assurer que le produit répond aux exigences d’utilisation prévues, avec documentation des résultats.",
+      "regulationRef": "ISO 13485 §7.3.7"
+    },
+    {
+      "id": "7.3.8",
+      "title": "Transfert de la conception et du développement",
+      "description": "Veiller à ce que les résultats de la conception soient correctement transférés à la production.",
+      "regulationRef": "ISO 13485 §7.3.8"
+    },
+    {
+      "id": "7.3.9",
+      "title": "Maîtrise des modifications de la conception et du développement",
+      "description": "Identifier, documenter, valider, vérifier et approuver toutes les modifications.",
+      "regulationRef": "ISO 13485 §7.3.9"
+    },
+    {
+      "id": "7.3.10",
+      "title": "Dossiers de conception et de développement",
+      "description": "Constituer et maintenir un dossier de conception pour chaque dispositif médical.",
+      "regulationRef": "ISO 13485 §7.3.10"
+    },
+    {
+      "id": "7.4.1",
+      "title": "Processus d’achat",
+      "description": "Assurer que les produits achetés sont conformes aux exigences spécifiées.",
+      "regulationRef": "ISO 13485 §7.4.1"
+    },
+    {
+      "id": "7.4.2",
+      "title": "Informations relatives aux achats",
+      "description": "Définir clairement les exigences dans les documents d’achat.",
+      "regulationRef": "ISO 13485 §7.4.2"
+    },
+    {
+      "id": "7.4.3",
+      "title": "Vérification du produit acheté",
+      "description": "Mettre en place des procédures pour la vérification des produits achetés.",
+      "regulationRef": "ISO 13485 §7.4.3"
+    },
+    {
+      "id": "7.5.1",
+      "title": "Maîtrise de la production et de la prestation de service",
+      "description": "Planifier et maîtriser la production pour garantir la conformité du produit.",
+      "regulationRef": "ISO 13485 §7.5.1"
+    },
+    {
+      "id": "7.5.2",
+      "title": "Propreté du produit",
+      "description": "Spécifier et contrôler la propreté du produit lorsque cela est requis.",
+      "regulationRef": "ISO 13485 §7.5.2"
+    },
+    {
+      "id": "7.5.3",
+      "title": "Activités d’installation",
+      "description": "Maîtriser l’installation lorsque celle-ci est requise pour le bon fonctionnement du DM.",
+      "regulationRef": "ISO 13485 §7.5.3"
+    },
+    {
+      "id": "7.5.4",
+      "title": "Prestations associées",
+      "description": "Gérer les prestations après-vente, maintenance ou autre service associé.",
+      "regulationRef": "ISO 13485 §7.5.4"
+    },
+    {
+      "id": "7.5.5",
+      "title": "Exigences particulières pour les DM stériles",
+      "description": "Appliquer des contrôles spécifiques pour les DM stériles afin d’assurer leur sécurité.",
+      "regulationRef": "ISO 13485 §7.5.5"
+    },
+    {
+      "id": "7.5.6",
+      "title": "Validation des processus de production et de prestation",
+      "description": "Valider les processus lorsque la conformité ne peut pas être vérifiée a posteriori.",
+      "regulationRef": "ISO 13485 §7.5.6"
+    },
+    {
+      "id": "7.5.7",
+      "title": "Validation des procédés de stérilisation / barrière stérile",
+      "description": "Appliquer des validations spécifiques aux procédés de stérilisation et aux systèmes de barrière stérile.",
+      "regulationRef": "ISO 13485 §7.5.7"
+    },
+    {
+      "id": "7.5.8",
+      "title": "Identification",
+      "description": "Mettre en œuvre des moyens pour identifier le statut du produit tout au long de la réalisation.",
+      "regulationRef": "ISO 13485 §7.5.8"
+    },
+    {
+      "id": "7.5.9.1",
+      "title": "Traçabilité – Généralités",
+      "description": "Assurer la traçabilité pour les dispositifs lorsque requis par la réglementation.",
+      "regulationRef": "ISO 13485 §7.5.9.1"
+    },
+    {
+      "id": "7.5.9.2",
+      "title": "Traçabilité – DM implantables",
+      "description": "Des exigences spécifiques s’appliquent pour les dispositifs médicaux implantables.",
+      "regulationRef": "ISO 13485 §7.5.9.2"
+    },
+    {
+      "id": "7.5.10",
+      "title": "Propriété du client",
+      "description": "Identifier, vérifier, protéger et sauvegarder les biens du client utilisés dans le cadre du produit.",
+      "regulationRef": "ISO 13485 §7.5.10"
+    },
+    {
+      "id": "7.5.11",
+      "title": "Préservation du produit",
+      "description": "Préserver la conformité du produit durant le traitement interne et la livraison.",
+      "regulationRef": "ISO 13485 §7.5.11"
+    },
+    {
+      "id": "7.6",
+      "title": "Maîtrise des équipements de surveillance et de mesure",
+      "description": "L’organisme doit identifier et maintenir les équipements nécessaires pour démontrer la conformité du produit.",
+      "regulationRef": "ISO 13485 §7.6"
+    }
+  ]
+},
+{
+  "id": "8",
+  "title": "Mesurage, analyse et amélioration",
+  "items": [
+    {
+      "id": "8.1",
+      "title": "Généralités",
+      "description": "L’organisme doit planifier et mettre en œuvre les processus de surveillance, de mesure, d’analyse et d’amélioration nécessaires pour démontrer la conformité et améliorer le système de management de la qualité.",
+      "regulationRef": "ISO 13485 §8.1"
+    },
+    {
+      "id": "8.2.1",
+      "title": "Retours d’information",
+      "description": "Mettre en place un processus documenté pour recueillir et analyser les retours d'information en tant qu’entrée pour l'amélioration.",
+      "regulationRef": "ISO 13485 §8.2.1"
+    },
+    {
+      "id": "8.2.2",
+      "title": "Traitement des réclamations",
+      "description": "Mettre en œuvre un processus documenté pour la gestion des réclamations, y compris l'enregistrement, l'investigation et la réponse.",
+      "regulationRef": "ISO 13485 §8.2.2"
+    },
+    {
+      "id": "8.2.3",
+      "title": "Signalement aux autorités réglementaires",
+      "description": "Établir un processus documenté pour déterminer la nécessité de signalements aux autorités réglementaires et assurer leur exécution.",
+      "regulationRef": "ISO 13485 §8.2.3"
+    },
+    {
+      "id": "8.2.4",
+      "title": "Audit interne",
+      "description": "Planifier et mener des audits internes à intervalles planifiés pour vérifier la conformité au SMQ et son efficacité.",
+      "regulationRef": "ISO 13485 §8.2.4"
+    },
+    {
+      "id": "8.2.5",
+      "title": "Surveillance et mesure des processus",
+      "description": "Appliquer des méthodes appropriées pour assurer la capacité des processus à atteindre les résultats planifiés.",
+      "regulationRef": "ISO 13485 §8.2.5"
+    },
+    {
+      "id": "8.2.6",
+      "title": "Surveillance et mesure du produit",
+      "description": "Surveiller et mesurer les caractéristiques du produit pour vérifier qu'il satisfait aux exigences.",
+      "regulationRef": "ISO 13485 §8.2.6"
+    },
+    {
+      "id": "8.3.1",
+      "title": "Maîtrise du produit non conforme — Généralités",
+      "description": "Assurer que les produits non conformes aux exigences sont identifiés et maîtrisés pour éviter leur utilisation ou livraison.",
+      "regulationRef": "ISO 13485 §8.3.1"
+    },
+    {
+      "id": "8.3.2",
+      "title": "Actions avant livraison",
+      "description": "Définir les actions à entreprendre lorsqu’une non-conformité est détectée avant la livraison.",
+      "regulationRef": "ISO 13485 §8.3.2"
+    },
+    {
+      "id": "8.3.3",
+      "title": "Actions après livraison",
+      "description": "Définir les actions à entreprendre lorsqu’une non-conformité est détectée après livraison.",
+      "regulationRef": "ISO 13485 §8.3.3"
+    },
+    {
+      "id": "8.3.4",
+      "title": "Retouches",
+      "description": "Établir des dispositions pour la retouche des produits non conformes, avec validation de la conformité.",
+      "regulationRef": "ISO 13485 §8.3.4"
+    },
+    {
+      "id": "8.4",
+      "title": "Analyse des données",
+      "description": "Recueillir et analyser des données pour démontrer l'adéquation, l'efficacité et l'amélioration continue du SMQ.",
+      "regulationRef": "ISO 13485 §8.4"
+    },
+    {
+      "id": "8.5.1",
+      "title": "Amélioration — Généralités",
+      "description": "Identifier et mettre en œuvre des actions pour améliorer en continu l'efficacité du système de management de la qualité.",
+      "regulationRef": "ISO 13485 §8.5.1"
+    },
+    {
+      "id": "8.5.2",
+      "title": "Actions correctives",
+      "description": "Établir un processus documenté pour traiter les non-conformités et prendre des actions correctives pour prévenir leur récurrence.",
+      "regulationRef": "ISO 13485 §8.5.2"
+    },
+    {
+      "id": "8.5.3",
+      "title": "Actions préventives",
+      "description": "Établir un processus documenté pour identifier les non-conformités potentielles et prendre des actions préventives pour les éviter.",
+      "regulationRef": "ISO 13485 §8.5.3"
+    }
+  ]
+}
+  ]
+}

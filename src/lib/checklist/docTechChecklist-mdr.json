@@ -1,0 +1,92 @@
+{
+  "id": "doc-tech-mdr",
+  "title": "Checklist Documentation technique",
+  "subtitle": "Règlement (UE) 2017/745 — Annexe II",
+  "intro": "Vérifiez que votre dossier technique contient tous les éléments requis par l’annexe II du MDR.",
+  "sections": [
+    {
+      "id": "1",
+      "title": "DESCRIPTION ET SPÉCIFICATION DU DISPOSITIF",
+      "items": [
+        {
+          "id": "1.1.1.a",
+          "title": "Nom / dénomination commerciale + description générale",
+          "description": "Destination et utilisateurs visés.",
+          "regulationRef": "MDR 2017/745 — Annexe II 1.1 a"
+        },
+        { "id": "1.1.1.b", "title": "IUD-ID ou autre code produit", "description": "Traçabilité unique du dispositif.", "regulationRef": "Annexe II 1.1 b" },
+        { "id": "1.1.1.c", "title": "Population cible & indications", "description": "Patients, pathologies, contre-indications, mises en garde.", "regulationRef": "Annexe II 1.1 c" },
+        { "id": "1.1.1.d", "title": "Principe de fonctionnement / mode d’action", "description": "Explication scientifique du mécanisme.", "regulationRef": "Annexe II 1.1 d" },
+        { "id": "1.1.1.e", "title": "Justification dispositif médical", "description": "Pourquoi le produit relève du MDR.", "regulationRef": "Annexe II 1.1 e" },
+        { "id": "1.1.1.f", "title": "Classe de risque + règle", "description": "Classe I/IIa/IIb/III et justification Annexe VIII.", "regulationRef": "Annexe II 1.1 f" },
+        { "id": "1.1.1.g", "title": "Nouvelle(s) caractéristique(s)", "description": "Technologies ou fonctions inédites.", "regulationRef": "Annexe II 1.1 g" },
+        { "id": "1.1.1.h", "title": "Accessoires & produits combinés", "description": "Liste des accessoires, autres DM ou produits utilisés ensemble.", "regulationRef": "Annexe II 1.1 h" },
+        { "id": "1.1.1.i", "title": "Configurations / variantes", "description": "Toutes les variantes commercialisées.", "regulationRef": "Annexe II 1.1 i" },
+        { "id": "1.1.1.j", "title": "Éléments fonctionnels clés", "description": "Schémas, pièces, composants (dont logiciel).", "regulationRef": "Annexe II 1.1 j" },
+        { "id": "1.1.1.k", "title": "Matières premières en contact", "description": "Matériaux des parties en contact direct/indirect.", "regulationRef": "Annexe II 1.1 k" },
+        { "id": "1.1.1.l", "title": "Spécifications techniques", "description": "Caractéristiques, dimensions, performances publiées.", "regulationRef": "Annexe II 1.1 l" },
+
+        { "id": "1.2.a", "title": "Générations précédentes", "description": "Résumé des versions antérieures du dispositif.", "regulationRef": "Annexe II 1.2 a" },
+        { "id": "1.2.b", "title": "Dispositifs similaires sur le marché", "description": "Résumé des DM similaires existants.", "regulationRef": "Annexe II 1.2 b" }
+      ]
+    },
+
+    {
+      "id": "2",
+      "title": "INFORMATIONS À FOURNIR PAR LE FABRICANT",
+      "items": [
+        { "id": "2.labels", "title": "Étiquettes dispositif & conditionnement", "description": "Unitaires, vente, transport, langues UE.", "regulationRef": "Annexe II 2" },
+        { "id": "2.ifu", "title": "Notice d’utilisation multilingue", "description": "IFU dans toutes les langues du marché visé.", "regulationRef": "Annexe II 2" }
+      ]
+    },
+
+    {
+      "id": "3",
+      "title": "INFORMATIONS SUR LA CONCEPTION ET LA FABRICATION",
+      "items": [
+        { "id": "3.a", "title": "Étapes de conception", "description": "Processus de design du dispositif.", "regulationRef": "Annexe II 3 a" },
+        { "id": "3.b", "title": "Processus de fabrication & validation", "description": "Spécifications complètes, contrôles, essais produit final.", "regulationRef": "Annexe II 3 b" },
+        { "id": "3.c", "title": "Sites de conception & fabrication", "description": "Tous les sites, fournisseurs, sous-traitants.", "regulationRef": "Annexe II 3 c" }
+      ]
+    },
+
+    {
+      "id": "4",
+      "title": "EXIGENCES GÉNÉRALES DE SÉCURITÉ & PERFORMANCES (Annexe I)",
+      "items": [
+        { "id": "4.a", "title": "EGSP applicables + exclusions", "description": "Liste des exigences pertinentes et non pertinentes.", "regulationRef": "Annexe II 4 a" },
+        { "id": "4.b", "title": "Méthodes de démonstration de conformité", "description": "Tests, évaluations, preuves pour chaque EGSP.", "regulationRef": "Annexe II 4 b" },
+        { "id": "4.c", "title": "Normes harmonisées / SC / autres solutions", "description": "Liste détaillée des normes utilisées.", "regulationRef": "Annexe II 4 c" },
+        { "id": "4.d", "title": "Références documentaires précises", "description": "Localisation des preuves dans le dossier technique.", "regulationRef": "Annexe II 4 d" }
+      ]
+    },
+
+    {
+      "id": "5",
+      "title": "ANALYSE BÉNÉFICE / RISQUE & GESTION DES RISQUES",
+      "items": [
+        { "id": "5.a", "title": "Analyse bénéfice / risque", "description": "Comme Annexe I §1 & §8.", "regulationRef": "Annexe II 5 a" },
+        { "id": "5.b", "title": "Gestion des risques (ISO 14971)", "description": "Solutions retenues, résultats, rapports.", "regulationRef": "Annexe II 5 b" }
+      ]
+    },
+
+    {
+      "id": "6",
+      "title": "VÉRIFICATION & VALIDATION DU PRODUIT",
+      "items": [
+        { "id": "6.1.a", "title": "Essais précliniques", "description": "Résultats d’ingénierie, laboratoire, animaux, littérature.", "regulationRef": "Annexe II 6.1 a" },
+        { "id": "6.1.b", "title": "Détails des protocoles & méthodes", "description": "Biocompatibilité, CEM, validation logiciel, stabilité, performances.", "regulationRef": "Annexe II 6.1 b" },
+        { "id": "6.1.c", "title": "Évaluation clinique (CER)", "description": "Rapport, mises à jour, plan d’évaluation clinique.", "regulationRef": "Annexe II 6.1 c" },
+        { "id": "6.1.d", "title": "Plan & rapport de SCAC", "description": "Suivi clinique après commercialisation ou justification.", "regulationRef": "Annexe II 6.1 d" },
+
+        { "id": "6.2.a", "title": "Substance médicamenteuse intégrée", "description": "Source et données de sécurité / utilité.", "regulationRef": "Annexe II 6.2 a" },
+        { "id": "6.2.b", "title": "Tissus / cellules humaines ou animales", "description": "Tous matériaux d’origine biologique + conformité Annexes I 13.1/13.2.", "regulationRef": "Annexe II 6.2 b" },
+        { "id": "6.2.c", "title": "Substances absorbées / dispersées", "description": "Études ADME, interactions, toxicité, etc.", "regulationRef": "Annexe II 6.2 c" },
+        { "id": "6.2.d", "title": "Substances CMR / perturbateurs endocriniens", "description": "Justification Annexe I 10.4.2.", "regulationRef": "Annexe II 6.2 d" },
+        { "id": "6.2.e", "title": "Stérilité ou conditions microbio.", "description": "Description environnement, validation stérilisation.", "regulationRef": "Annexe II 6.2 e" },
+        { "id": "6.2.f", "title": "Fonction de mesurage", "description": "Méthodes d’exactitude de mesure.", "regulationRef": "Annexe II 6.2 f" },
+        { "id": "6.2.g", "title": "Connexion à d’autres dispositifs", "description": "Description de la configuration + preuve de conformité multi-DM.", "regulationRef": "Annexe II 6.2 g" }
+      ]
+    }
+  ]
+}

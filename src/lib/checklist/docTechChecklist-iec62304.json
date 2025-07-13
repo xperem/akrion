@@ -1,0 +1,691 @@
+{
+  "id": "iec-62304",
+  "title": "Checklist IEC 62304",
+  "subtitle": "Logiciels de dispositifs médicaux — Éd. 2006 + A1 : 2015",
+  "intro": "Vérifiez que votre projet logiciel respecte les principales exigences de la norme IEC 62304.",
+  "sections": [
+    {
+      "id": "4",
+      "title": "Exigences générales",
+      "items": [
+        {
+          "id": "4.1",
+          "title": "Système de management de la qualité",
+          "description": "Le fabricant doit démontrer sa capacité à fournir des logiciels répondant systématiquement aux exigences des clients et aux exigences réglementaires applicables (ISO 13485).",
+          "regulationRef": "IEC 62304 §4.1"
+        },
+        {
+          "id": "4.2",
+          "title": "Management du risque",
+          "description": "Le fabricant applique un processus de gestion des risques conforme à la norme ISO 14971.",
+          "regulationRef": "IEC 62304 §4.2"
+        },
+        {
+          "id": "4.3.a",
+          "title": "Attribution d’une classe A / B / C",
+          "description": "Attribuer une classe de sécurité à chaque système logiciel selon le risque de dommage potentiel (figure 3).",
+          "regulationRef": "IEC 62304 §4.3 a"
+        },
+        {
+          "id": "4.3.b",
+          "title": "Classe de sécurité pour les mesures de maîtrise des risques",
+          "description": "Classer chaque système logiciel utilisé comme mesure de maîtrise des risques.",
+          "regulationRef": "IEC 62304 §4.3 b"
+        },
+        {
+          "id": "4.3.c",
+          "title": "Documentation dans le fichier de gestion des risques",
+          "description": "Documenter la classe de sécurité attribuée à chaque système logiciel.",
+          "regulationRef": "IEC 62304 §4.3 c"
+        },
+        {
+          "id": "4.3.d",
+          "title": "Héritage de la classe lors de la décomposition",
+          "description": "Les éléments logiciels héritent de la classe de leur parent sauf justification documentée d’une classe différente.",
+          "regulationRef": "IEC 62304 §4.3 d"
+        },
+        {
+          "id": "4.3.e",
+          "title": "Documenter les classes différentes",
+          "description": "Documenter toute classe différente attribuée à un élément logiciel décomposé.",
+          "regulationRef": "IEC 62304 §4.3 e"
+        },
+        {
+          "id": "4.3.f",
+          "title": "Processus selon la classe la plus élevée",
+          "description": "Appliquer les processus exigés par la classe la plus élevée d’un groupe d’éléments, sauf justification dans le dossier de gestion des risques.",
+          "regulationRef": "IEC 62304 §4.3 f"
+        },
+        {
+          "id": "4.3.g",
+          "title": "Exigences provisoires classe C",
+          "description": "Tant qu’aucune classe n’est attribuée, appliquer les exigences de la classe C.",
+          "regulationRef": "IEC 62304 §4.3 g"
+        },
+        {
+          "id": "4.4.1",
+          "title": "Conformité alternative",
+          "description": "La conformité du logiciel hérité peut être démontrée selon 4.4.2 à 4.4.5 au lieu des clauses 5 à 9.",
+          "regulationRef": "IEC 62304 §4.4.1"
+        },
+        {
+          "id": "4.4.2",
+          "title": "Activités de gestion des risques",
+          "description": "Évaluer les retours d’expérience et mener les activités de gestion des risques pour le logiciel hérité.",
+          "regulationRef": "IEC 62304 §4.4.2"
+        },
+        {
+          "id": "4.4.3",
+          "title": "Analyse des écarts (gap analysis)",
+          "description": "Comparer les livrables existants avec ceux requis et décider lesquels créer.",
+          "regulationRef": "IEC 62304 §4.4.3"
+        },
+        {
+          "id": "4.4.4",
+          "title": "Plan de comblement des lacunes",
+          "description": "Établir et exécuter un plan pour générer les livrables manquants et traiter les problèmes.",
+          "regulationRef": "IEC 62304 §4.4.4"
+        },
+        {
+          "id": "4.4.5",
+          "title": "Justification de l’utilisation du logiciel hérité",
+          "description": "Documenter la version du logiciel hérité et justifier sa poursuite d’utilisation.",
+          "regulationRef": "IEC 62304 §4.4.5"
+        }
+      ]
+    },
+
+    
+
+    {
+      "id": "5",
+      "title": "Processus du développement du logiciel",
+      "items": [
+        {
+          "id": "5.1.1",
+          "title": "Plan de développement du logiciel",
+          "description": "Établir le ou les plans couvrant le cycle de vie, les processus, livrables, traçabilité, configuration et résolution des problèmes.",
+          "regulationRef": "IEC 62304 §5.1.1"
+        },
+        {
+          "id": "5.1.2",
+          "title": "Mise à jour du plan",
+          "description": "Mettre à jour le plan au fur et à mesure de l’avancement du projet.",
+          "regulationRef": "IEC 62304 §5.1.2"
+        },
+        {
+          "id": "5.1.3",
+          "title": "Coordination avec la conception système",
+          "description": "Inclure les procédures d’intégration, vérification et validation système.",
+          "regulationRef": "IEC 62304 §5.1.3"
+        },
+        {
+          "id": "5.1.4",
+          "title": "Normes, méthodes, outils (classe C)",
+          "description": "Définir les normes, méthodes et outils pour les éléments de classe C.",
+          "regulationRef": "IEC 62304 §5.1.4"
+        },
+        {
+          "id": "5.1.5",
+          "title": "Plan d’intégration et tests d’intégration",
+          "description": "Planifier l’intégration des éléments logiciels et les essais associés.",
+          "regulationRef": "IEC 62304 §5.1.5"
+        },
+        {
+          "id": "5.1.6",
+          "title": "Planification de la vérification",
+          "description": "Lister les livrables à vérifier, les tâches et critères d’acceptation.",
+          "regulationRef": "IEC 62304 §5.1.6"
+        },
+        {
+          "id": "5.1.7",
+          "title": "Plan de gestion des risques logiciels",
+          "description": "Prévoir les activités de gestion des risques logiciel, y compris ceux liés au SOUP.",
+          "regulationRef": "IEC 62304 §5.1.7"
+        },
+        {
+          "id": "5.1.8",
+          "title": "Planification de la documentation",
+          "description": "Définir les documents à produire et les procédures d’élaboration, revue et approbation.",
+          "regulationRef": "IEC 62304 §5.1.8"
+        },
+        {
+          "id": "5.1.9",
+          "title": "Plan de gestion de configuration",
+          "description": "Définir classes d’éléments à contrôler, activités de configuration et responsabilités.",
+          "regulationRef": "IEC 62304 §5.1.9"
+        },
+        {
+          "id": "5.1.10",
+          "title": "Éléments de support à contrôler",
+          "description": "Contrôler les outils et paramètres influençant le logiciel (classes B & C).",
+          "regulationRef": "IEC 62304 §5.1.10"
+        },
+        {
+          "id": "5.1.11",
+          "title": "Contrôle des éléments avant vérification",
+          "description": "Placer les éléments sous gestion de configuration avant vérification (classes B & C).",
+          "regulationRef": "IEC 62304 §5.1.11"
+        },
+        {
+          "id": "5.1.12",
+          "title": "Défauts logiciels courants",
+          "description": "Identifier les défauts courants potentiels et prouver qu’ils ne créent pas de risque inacceptable (classes B & C).",
+          "regulationRef": "IEC 62304 §5.1.12"
+        },
+        {
+          "id": "5.2.1",
+          "title": "Définir les exigences à partir des exigences système",
+          "description": "Documenter les exigences du système logiciel dérivées des exigences système.",
+          "regulationRef": "IEC 62304 §5.2.1"
+        },
+        {
+          "id": "5.2.2",
+          "title": "Contenu des exigences logicielles",
+          "description": "Inclure les exigences fonctionnelles, interfaces, sécurité, UI, base de données, installation, etc.",
+          "regulationRef": "IEC 62304 §5.2.2"
+        },
+        {
+          "id": "5.2.3",
+          "title": "Mesures de maîtrise des risques dans les exigences",
+          "description": "Intégrer dans les exigences toutes les mesures de maîtrise des risques mises en œuvre par logiciel.",
+          "regulationRef": "IEC 62304 §5.2.3"
+        },
+        {
+          "id": "5.2.4",
+          "title": "Réévaluation de l’analyse des risques",
+          "description": "Réévaluer l’analyse des risques du dispositif quand les exigences logicielles sont établies.",
+          "regulationRef": "IEC 62304 §5.2.4"
+        },
+        {
+          "id": "5.2.5",
+          "title": "Mise à jour des exigences existantes",
+          "description": "Mettre à jour les exigences système si nécessaire à la suite de l’analyse logicielle.",
+          "regulationRef": "IEC 62304 §5.2.5"
+        },
+        {
+          "id": "5.2.6",
+          "title": "Vérification des exigences logicielles",
+          "description": "Vérifier que les exigences implémentent correctement celles du système, sont non ambiguës, testables et traçables.",
+          "regulationRef": "IEC 62304 §5.2.6"
+        },
+        {
+          "id": "5.3.1",
+          "title": "Transformer les exigences en architecture",
+          "description": "Définir une architecture documentée identifiant tous les éléments logiciels.",
+          "regulationRef": "IEC 62304 §5.3.1"
+        },
+        {
+          "id": "5.3.2",
+          "title": "Architecture des interfaces",
+          "description": "Définir et documenter les interfaces entre éléments logiciels et composants externes.",
+          "regulationRef": "IEC 62304 §5.3.2"
+        },
+        {
+          "id": "5.3.3",
+          "title": "Exigences pour le SOUP (fonction/performance)",
+          "description": "Spécifier les exigences nécessaires à l’utilisation du SOUP.",
+          "regulationRef": "IEC 62304 §5.3.3"
+        },
+        {
+          "id": "5.3.4",
+          "title": "Exigences système requises par le SOUP",
+          "description": "Spécifier matériel/logiciel nécessaires au SOUP.",
+          "regulationRef": "IEC 62304 §5.3.4"
+        },
+        {
+          "id": "5.3.5",
+          "title": "Ségrégation pour la maîtrise des risques",
+          "description": "Identifier la ségrégation nécessaire entre éléments logiciels (classe C).",
+          "regulationRef": "IEC 62304 §5.3.5"
+        },
+        {
+          "id": "5.3.6",
+          "title": "Vérification de l’architecture",
+          "description": "Vérifier que l’architecture couvre les exigences, les interfaces et le SOUP.",
+          "regulationRef": "IEC 62304 §5.3.6"
+        },
+        {
+          "id": "5.4.1",
+          "title": "Décomposition en unités logicielles",
+          "description": "Affiner l’architecture jusqu’aux unités logicielles.",
+          "regulationRef": "IEC 62304 §5.4.1"
+        },
+        {
+          "id": "5.4.2",
+          "title": "Conception détaillée de chaque unité",
+          "description": "Documenter une conception détaillée suffisamment précise pour la mise en œuvre.",
+          "regulationRef": "IEC 62304 §5.4.2"
+        },
+        {
+          "id": "5.4.3",
+          "title": "Conception détaillée des interfaces",
+          "description": "Documenter la conception détaillée des interfaces entre unités et composants externes.",
+          "regulationRef": "IEC 62304 §5.4.3"
+        },
+        {
+          "id": "5.4.4",
+          "title": "Vérification de la conception détaillée",
+          "description": "Vérifier que la conception détaillée implémente l’architecture sans contradictions.",
+          "regulationRef": "IEC 62304 §5.4.4"
+        },
+        {
+          "id": "5.5.1",
+          "title": "Mise en œuvre des unités logicielles",
+          "description": "Implémenter chaque unité logicielle conformément à la conception détaillée.",
+          "regulationRef": "IEC 62304 §5.5.1"
+        },
+        {
+          "id": "5.5.2",
+          "title": "Processus de vérification des unités",
+          "description": "Établir méthodes et procédures pour vérifier chaque unité.",
+          "regulationRef": "IEC 62304 §5.5.2"
+        },
+        {
+          "id": "5.5.3",
+          "title": "Critères d’acceptation des unités",
+          "description": "Définir des critères d’acceptation des unités avant intégration.",
+          "regulationRef": "IEC 62304 §5.5.3"
+        },
+        {
+          "id": "5.5.4",
+          "title": "Critères supplémentaires (classe C)",
+          "description": "Ajouter des critères sur séquence d’événements, gestion des fautes, conditions limites, etc.",
+          "regulationRef": "IEC 62304 §5.5.4"
+        },
+        {
+  "id": "5.5.5",
+  "title": "Vérification des unités logicielles",
+  "description": "Vérifier que chaque unité logicielle fonctionne comme prévu.",
+  "regulationRef": "IEC 62304 §5.5.5"
+},
+{
+  "id": "5.6.1",
+  "title": "Intégration des unités logicielles",
+  "description": "Assembler les unités logicielles pour construire le système logiciel complet.",
+  "regulationRef": "IEC 62304 §5.6.1"
+},
+{
+  "id": "5.6.2",
+  "title": "Vérification de l'intégration logicielle",
+  "description": "Vérifier que les composants intégrés interagissent correctement.",
+  "regulationRef": "IEC 62304 §5.6.2"
+},
+{
+  "id": "5.6.3",
+  "title": "Tests d'intégration logicielle",
+  "description": "Réaliser des tests pour évaluer l'intégration des unités logicielles.",
+  "regulationRef": "IEC 62304 §5.6.3"
+},
+{
+  "id": "5.6.4",
+  "title": "Contenu des tests d'intégration logicielle",
+  "description": "Documenter les cas de test, les résultats attendus et les critères de réussite.",
+  "regulationRef": "IEC 62304 §5.6.4"
+},
+{
+  "id": "5.6.5",
+  "title": "Évaluation des procédures de test d'intégration",
+  "description": "Vérifier la pertinence et la couverture des tests d'intégration.",
+  "regulationRef": "IEC 62304 §5.6.5"
+},
+{
+  "id": "5.6.6",
+  "title": "Tests de régression",
+  "description": "Effectuer des tests après des modifications pour éviter les régressions.",
+  "regulationRef": "IEC 62304 §5.6.6"
+},
+{
+  "id": "5.6.7",
+  "title": "Enregistrement des tests d’intégration",
+  "description": "Conserver les résultats et preuves des tests d’intégration.",
+  "regulationRef": "IEC 62304 §5.6.7"
+},
+{
+  "id": "5.6.8",
+  "title": "Processus de résolution des problèmes logiciels",
+  "description": "Utiliser un processus documenté pour traiter les anomalies détectées.",
+  "regulationRef": "IEC 62304 §5.6.8"
+},
+{
+  "id": "5.7.1",
+  "title": "Définition des tests système logiciel",
+  "description": "Concevoir les tests à partir des exigences logicielles.",
+  "regulationRef": "IEC 62304 §5.7.1"
+},
+{
+  "id": "5.7.2",
+  "title": "Processus de résolution des problèmes logiciels (tests système)",
+  "description": "Appliquer une méthode pour corriger les anomalies découvertes durant les tests système.",
+  "regulationRef": "IEC 62304 §5.7.2"
+},
+{
+  "id": "5.7.3",
+  "title": "Répétition des tests après correction",
+  "description": "Effectuer à nouveau les tests après les corrections apportées.",
+  "regulationRef": "IEC 62304 §5.7.3"
+},
+{
+  "id": "5.7.4",
+  "title": "Évaluation des tests système logiciel",
+  "description": "Analyser les résultats pour s’assurer de la conformité du système.",
+  "regulationRef": "IEC 62304 §5.7.4"
+},
+{
+  "id": "5.7.5",
+  "title": "Enregistrements des tests système logiciel",
+  "description": "Conserver les preuves des tests système et des résultats obtenus.",
+  "regulationRef": "IEC 62304 §5.7.5"
+},
+{
+  "id": "5.8.1",
+  "title": "Vérification complète avant mise à disposition",
+  "description": "S’assurer que toutes les vérifications sont achevées avant livraison.",
+  "regulationRef": "IEC 62304 §5.8.1"
+},
+{
+  "id": "5.8.2",
+  "title": "Documentation des anomalies résiduelles",
+  "description": "Lister les défauts connus non résolus au moment de la mise à disposition.",
+  "regulationRef": "IEC 62304 §5.8.2"
+},
+{
+  "id": "5.8.3",
+  "title": "Évaluation des anomalies résiduelles",
+  "description": "Évaluer l’impact des défauts connus sur la sécurité et les performances.",
+  "regulationRef": "IEC 62304 §5.8.3"
+},
+{
+  "id": "5.8.4",
+  "title": "Documentation des versions livrées",
+  "description": "Identifier les versions spécifiques du logiciel fournies.",
+  "regulationRef": "IEC 62304 §5.8.4"
+},
+{
+  "id": "5.8.5",
+  "title": "Traçabilité de la création logicielle",
+  "description": "Documenter le processus ayant conduit à la version livrée.",
+  "regulationRef": "IEC 62304 §5.8.5"
+},
+{
+  "id": "5.8.6",
+  "title": "Complétude des tâches et activités",
+  "description": "S’assurer que toutes les tâches du processus de développement sont complètes.",
+  "regulationRef": "IEC 62304 §5.8.6"
+},
+{
+  "id": "5.8.7",
+  "title": "Archivage du logiciel",
+  "description": "Conserver une copie contrôlée de la version livrée.",
+  "regulationRef": "IEC 62304 §5.8.7"
+},
+{
+  "id": "5.8.8",
+  "title": "Livraison fiable",
+  "description": "Mettre en place un processus garantissant une livraison fiable du logiciel.",
+  "regulationRef": "IEC 62304 §5.8.8"
+}
+
+      ]
+    },
+
+  
+
+    {
+  "id": "6",
+  "title": "Processus de maintenance du logiciel",
+  "items": [
+    {
+      "id": "6.1",
+      "title": "Plan de maintenance du logiciel",
+      "description": "Établir un plan documenté pour la maintenance du logiciel.",
+      "regulationRef": "IEC 62304 §6.1"
+    },
+    {
+      "id": "6.2.1.1",
+      "title": "Surveillance des retours",
+      "description": "Surveiller les retours d'information sur le logiciel mis à disposition.",
+      "regulationRef": "IEC 62304 §6.2.1.1"
+    },
+    {
+      "id": "6.2.1.2",
+      "title": "Évaluation des retours",
+      "description": "Documenter et évaluer les retours concernant des problèmes potentiels.",
+      "regulationRef": "IEC 62304 §6.2.1.2"
+    },
+    {
+      "id": "6.2.1.3",
+      "title": "Évaluation des impacts sécurité",
+      "description": "Évaluer l’impact potentiel d’un problème sur la sécurité du dispositif.",
+      "regulationRef": "IEC 62304 §6.2.1.3"
+    },
+    {
+      "id": "6.2.2",
+      "title": "Résolution des problèmes logiciels",
+      "description": "Utiliser un processus documenté pour traiter les problèmes logiciels.",
+      "regulationRef": "IEC 62304 §6.2.2"
+    },
+    {
+      "id": "6.2.3",
+      "title": "Analyse des demandes de modification",
+      "description": "Analyser les demandes de modification avant mise en œuvre.",
+      "regulationRef": "IEC 62304 §6.2.3"
+    },
+    {
+      "id": "6.2.4",
+      "title": "Approbation des modifications",
+      "description": "Mettre en place un processus d’approbation des modifications logicielles.",
+      "regulationRef": "IEC 62304 §6.2.4"
+    },
+    {
+      "id": "6.2.5",
+      "title": "Communication externe",
+      "description": "Prévoir les modalités de communication avec les utilisateurs et les autorités.",
+      "regulationRef": "IEC 62304 §6.2.5"
+    },
+    {
+      "id": "6.3.1",
+      "title": "Mise en œuvre des modifications",
+      "description": "Utiliser un processus établi pour implémenter les modifications logicielles.",
+      "regulationRef": "IEC 62304 §6.3.1"
+    },
+    {
+      "id": "6.3.2",
+      "title": "Nouvelle mise à disposition",
+      "description": "Documenter la mise à disposition du logiciel modifié au niveau système.",
+      "regulationRef": "IEC 62304 §6.3.2"
+    }
+  ]
+},
+{
+  "id": "7",
+  "title": "Gestion des risques logiciels",
+  "items": [
+    {
+      "id": "7.1.1",
+      "title": "Identification des éléments critiques",
+      "description": "Identifier les éléments logiciels susceptibles de contribuer à une situation dangereuse.",
+      "regulationRef": "IEC 62304 §7.1.1"
+    },
+    {
+      "id": "7.1.2",
+      "title": "Identification des causes",
+      "description": "Déterminer les causes possibles des situations dangereuses associées au logiciel.",
+      "regulationRef": "IEC 62304 §7.1.2"
+    },
+    {
+      "id": "7.1.3",
+      "title": "Analyse des anomalies SOUP",
+      "description": "Évaluer les listes d’anomalies connues pour les SOUP utilisées.",
+      "regulationRef": "IEC 62304 §7.1.3"
+    },
+    {
+      "id": "7.1.4",
+      "title": "Documentation des causes",
+      "description": "Documenter les causes potentielles identifiées lors de l’analyse des risques.",
+      "regulationRef": "IEC 62304 §7.1.4"
+    },
+    {
+      "id": "7.2.1",
+      "title": "Définition des mesures de maîtrise",
+      "description": "Définir les mesures de maîtrise des risques pour les situations identifiées.",
+      "regulationRef": "IEC 62304 §7.2.1"
+    },
+    {
+      "id": "7.2.2",
+      "title": "Mise en œuvre des mesures",
+      "description": "Intégrer les mesures de maîtrise dans la conception du logiciel.",
+      "regulationRef": "IEC 62304 §7.2.2"
+    },
+    {
+      "id": "7.3.1",
+      "title": "Vérification des mesures de maîtrise",
+      "description": "Vérifier l'efficacité des mesures de maîtrise mises en œuvre.",
+      "regulationRef": "IEC 62304 §7.3.1"
+    },
+    {
+      "id": "7.3.2",
+      "title": "Événements nouveaux",
+      "description": "Consigner toutes nouvelles séquences d’événements critiques découvertes.",
+      "regulationRef": "IEC 62304 §7.3.2"
+    },
+    {
+      "id": "7.3.3",
+      "title": "Traçabilité des mesures",
+      "description": "Documenter la traçabilité entre les risques, les mesures et les tests.",
+      "regulationRef": "IEC 62304 §7.3.3"
+    },
+    {
+      "id": "7.4.1",
+      "title": "Analyse des modifications",
+      "description": "Analyser l’impact des modifications logicielles sur la sécurité.",
+      "regulationRef": "IEC 62304 §7.4.1"
+    },
+    {
+      "id": "7.4.2",
+      "title": "Impact sur les mesures",
+      "description": "Analyser l’effet des modifications sur les mesures de maîtrise en place.",
+      "regulationRef": "IEC 62304 §7.4.2"
+    },
+    {
+      "id": "7.4.3",
+      "title": "Gestion des risques adaptée",
+      "description": "Mener les activités de gestion des risques en fonction de l’analyse de modification.",
+      "regulationRef": "IEC 62304 §7.4.3"
+    }
+  ]
+},
+{
+  "id": "8",
+  "title": "Processus de gestion de la configuration logicielle",
+  "items": [
+    {
+      "id": "8.1.1",
+      "title": "Identification des éléments de configuration",
+      "description": "Mettre en place des moyens pour identifier tous les éléments de configuration du logiciel.",
+      "regulationRef": "IEC 62304 §8.1.1"
+    },
+    {
+      "id": "8.1.2",
+      "title": "Identification des SOUP",
+      "description": "Identifier précisément les logiciels SOUP utilisés dans le produit.",
+      "regulationRef": "IEC 62304 §8.1.2"
+    },
+    {
+      "id": "8.1.3",
+      "title": "Documentation de la configuration système",
+      "description": "Identifier et documenter les éléments de configuration au niveau du système.",
+      "regulationRef": "IEC 62304 §8.1.3"
+    },
+    {
+      "id": "8.2.1",
+      "title": "Approbation des modifications",
+      "description": "Mettre en place un processus d’approbation des demandes de modification logicielle.",
+      "regulationRef": "IEC 62304 §8.2.1"
+    },
+    {
+      "id": "8.2.2",
+      "title": "Mise en œuvre des modifications",
+      "description": "Implémenter les modifications conformément aux procédures définies.",
+      "regulationRef": "IEC 62304 §8.2.2"
+    },
+    {
+      "id": "8.2.3",
+      "title": "Vérification des modifications",
+      "description": "Vérifier que les modifications ont été correctement mises en œuvre.",
+      "regulationRef": "IEC 62304 §8.2.3"
+    },
+    {
+      "id": "8.2.4",
+      "title": "Traçabilité des modifications",
+      "description": "Assurer la traçabilité complète des modifications apportées au logiciel.",
+      "regulationRef": "IEC 62304 §8.2.4"
+    },
+    {
+      "id": "8.3",
+      "title": "Suivi de l’état de la configuration",
+      "description": "Maintenir à jour l’état de chaque élément de configuration et ses versions.",
+      "regulationRef": "IEC 62304 §8.3"
+    }
+  ]
+},
+{
+  "id": "9",
+  "title": "Processus de résolution des problèmes logiciels",
+  "items": [
+    {
+      "id": "9.1",
+      "title": "Préparation des rapports de problème",
+      "description": "Documenter de manière structurée tout problème identifié dans le logiciel.",
+      "regulationRef": "IEC 62304 §9.1"
+    },
+    {
+      "id": "9.2",
+      "title": "Enquête sur le problème",
+      "description": "Mener une analyse approfondie pour identifier la cause du problème logiciel.",
+      "regulationRef": "IEC 62304 §9.2"
+    },
+    {
+      "id": "9.3",
+      "title": "Information des parties concernées",
+      "description": "Notifier les parties prenantes concernées par les problèmes ou anomalies.",
+      "regulationRef": "IEC 62304 §9.3"
+    },
+    {
+      "id": "9.4",
+      "title": "Lien avec le processus de modification",
+      "description": "S’assurer que la résolution du problème passe par le processus de gestion des modifications.",
+      "regulationRef": "IEC 62304 §9.4"
+    },
+    {
+      "id": "9.5",
+      "title": "Enregistrement des problèmes",
+      "description": "Conserver les enregistrements détaillés de tous les problèmes logiciels.",
+      "regulationRef": "IEC 62304 §9.5"
+    },
+    {
+      "id": "9.6",
+      "title": "Analyse de tendances",
+      "description": "Analyser les problèmes pour détecter des tendances ou récurrences.",
+      "regulationRef": "IEC 62304 §9.6"
+    },
+    {
+      "id": "9.7",
+      "title": "Vérification de la résolution",
+      "description": "Vérifier que chaque problème logiciel a été résolu correctement.",
+      "regulationRef": "IEC 62304 §9.7"
+    },
+    {
+      "id": "9.8",
+      "title": "Contenu de la documentation de test",
+      "description": "Définir les informations à inclure dans la documentation de test liée à la résolution.",
+      "regulationRef": "IEC 62304 §9.8"
+    }
+  ]
+}
+
+
+
+
+  ]
+}

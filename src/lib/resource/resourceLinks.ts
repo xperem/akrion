@@ -1,0 +1,36 @@
+export const resourceLinks = [
+  {
+    id: 'mdr',
+    title: 'Règlement (UE) 2017/745 (MDR)',
+    description: 'Texte légal sur les dispositifs médicaux, version consolidée.',
+    url: 'https://eur-lex.europa.eu/legal-content/FR/TXT/?uri=CELEX%3A32017R0745',
+    category: 'regulation',
+    source: 'EU',
+    tags: ['MDR', 'règlement', 'dispositifs médicaux'],
+  },
+  {
+    id: 'ivdr',
+    title: 'Règlement (UE) 2017/746 (IVDR)',
+    description: 'Règlement applicable aux dispositifs médicaux de diagnostic in vitro.',
+    url: 'https://eur-lex.europa.eu/legal-content/FR/TXT/?uri=CELEX:32017R0746',
+    category: 'regulation',
+    source: 'EU',
+  },
+  {
+    id: 'mdcg-2019-11',
+    title: 'MDCG 2019-11 v2.1',
+    description: 'Guide de qualification et de classification des logiciels.',
+    url: 'https://health.ec.europa.eu/latest-updates/update-mdcg-2019-11-rev1-qualification-and-classification-software-regulation-eu-2017745-and-2025-06-17_en',
+    category: 'mdcg',
+    source: 'MDCG',
+    tags: ['classification', 'logiciel', 'règle 11'],
+  },
+  {
+    id: 'ansm',
+    title: 'ANSM – Agence nationale de sécurité du médicament',
+    description: 'Autorité française de réglementation des produits de santé.',
+    url: 'https://ansm.sante.fr/',
+    category: 'official',
+    source: 'FR',
+  },
+];

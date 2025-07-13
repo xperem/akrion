@@ -1,0 +1,111 @@
+{
+  "id": "doc-tech-ivdr",
+  "title": "Checklist Documentation technique",
+  "subtitle": "Règlement (UE) 2017/746 — Annexe II",
+  "intro": "Contrôlez que votre dossier IVDR contient tous les éléments exigés par l’annexe II.",
+  "sections": [
+    {
+      "id": "1",
+      "title": "DESCRIPTION & SPÉCIFICATION DU DISPOSITIF",
+      "items": [
+        { "id": "1.1.a",  "title": "Nom commercial + description générale",            "description": "Destination + utilisateurs visés.",                                   "regulationRef": "IVDR Annexe II 1.1 a" },
+        { "id": "1.1.b",  "title": "IUD-ID ou autre code produit",                      "description": "Traçabilité unique.",                                             "regulationRef": "1.1 b" },
+        { "id": "1.1.c.i","title": "Ce qui doit être détecté / mesuré",                "description": "",                                                                "regulationRef": "1.1 c i" },
+        { "id": "1.1.c.ii","title": "Fonction (dépistage, diagnostic, etc.)",          "description": "",                                                                "regulationRef": "1.1 c ii" },
+        { "id": "1.1.c.iii","title": "Trouble / affection / facteur de risque visé",   "description": "",                                                                "regulationRef": "1.1 c iii" },
+        { "id": "1.1.c.iv","title": "Automatisé ou non",                               "description": "",                                                                "regulationRef": "1.1 c iv" },
+        { "id": "1.1.c.v","title": "Type (qualitatif / quantitatif)",                  "description": "",                                                                "regulationRef": "1.1 c v" },
+        { "id": "1.1.c.vi","title": "Type d'échantillon requis",                       "description": "",                                                                "regulationRef": "1.1 c vi" },
+        { "id": "1.1.c.vii","title": "Population cible (le cas échéant)",              "description": "",                                                                "regulationRef": "1.1 c vii" },
+        { "id": "1.1.c.viii","title": "Utilisateur visé",                              "description": "",                                                                "regulationRef": "1.1 c viii" },
+        { "id": "1.1.c.ix","title": "Population & médicament (diagnostic compagnon)",  "description": "",                                                                "regulationRef": "1.1 c ix" },
+        { "id": "1.1.d",  "title": "Principe de la méthode d'essai / fonctionnement",  "description": "",                                                                "regulationRef": "1.1 d" },
+        { "id": "1.1.e",  "title": "Justification dispositif médical",                 "description": "Pourquoi le produit relève de l’IVDR.",                            "regulationRef": "1.1 e" },
+        { "id": "1.1.f",  "title": "Classe de risque + règle Annexe VIII",             "description": "",                                                                "regulationRef": "1.1 f" },
+        { "id": "1.1.g",  "title": "Description des composants réactifs (Ac, Ag…)",    "description": "",                                                                "regulationRef": "1.1 g" },
+        { "id": "1.1.h",  "title": "Collecte d'échantillon / matériel de transport",   "description": "Ou recommandations d’utilisation.",                               "regulationRef": "1.1 h" },
+        { "id": "1.1.i",  "title": "Caractéristiques d’essai (instruments automatisés)","description": "",                                                               "regulationRef": "1.1 i" },
+        { "id": "1.1.j",  "title": "Caractéristiques de l’instrumentation (essais auto)", "description": "",                                                             "regulationRef": "1.1 j" },
+        { "id": "1.1.k",  "title": "Description du logiciel utilisé",                  "description": "",                                                                "regulationRef": "1.1 k" },
+        { "id": "1.1.l",  "title": "Configurations / variantes disponibles",           "description": "",                                                                "regulationRef": "1.1 l" },
+        { "id": "1.1.m",  "title": "Accessoires & autres produits combinés",           "description": "",                                                                "regulationRef": "1.1 m" },
+
+        { "id": "1.2.a",  "title": "Générations précédentes",                          "description": "Résumé des versions antérieures.",                                "regulationRef": "1.2 a" },
+        { "id": "1.2.b",  "title": "Dispositifs similaires sur le marché",             "description": "",                                                                "regulationRef": "1.2 b" }
+      ]
+    },
+
+    {
+      "id": "2",
+      "title": "INFORMATIONS FOURNIES PAR LE FABRICANT",
+      "items": [
+        { "id": "2.a", "title": "Étiquettes dispositif + conditionnement", "description": "Toutes langues UE visées.", "regulationRef": "2 a" },
+        { "id": "2.b", "title": "Notice d’utilisation multilingue",        "description": "",                           "regulationRef": "2 b" }
+      ]
+    },
+
+    {
+      "id": "3",
+      "title": "INFORMATIONS SUR LA CONCEPTION & LA FABRICATION",
+      "items": [
+        { "id": "3.1.a", "title": "Éléments critiques (Ac, Ag, enzymes…)",           "description": "", "regulationRef": "3.1 a" },
+        { "id": "3.1.b", "title": "Instruments : sous-systèmes & logiciel",          "description": "", "regulationRef": "3.1 b" },
+        { "id": "3.1.c", "title": "Aperçu du système entier (instrument + soft)",    "description": "", "regulationRef": "3.1 c" },
+        { "id": "3.1.d", "title": "Algorithme d’interprétation (software)",          "description": "", "regulationRef": "3.1 d" },
+        { "id": "3.1.e", "title": "Aspects autodiagnostic / near-patient",           "description": "", "regulationRef": "3.1 e" },
+
+        { "id": "3.2.a", "title": "Processus de fabrication & contrôle final",       "description": "", "regulationRef": "3.2 a" },
+        { "id": "3.2.b", "title": "Liste des sites de fabrication (incl. sous-traitants)", "description": "", "regulationRef": "3.2 b" }
+      ]
+    },
+
+    {
+      "id": "4",
+      "title": "EXIGENCES GÉNÉRALES SÉCURITÉ & PERFORMANCES",
+      "items": [
+        { "id": "4.a", "title": "EGSP applicables + exclusions",                 "description": "", "regulationRef": "4 a" },
+        { "id": "4.b", "title": "Méthodes de démonstration de conformité",      "description": "", "regulationRef": "4 b" },
+        { "id": "4.c", "title": "Normes, SC ou autres solutions",               "description": "", "regulationRef": "4 c" },
+        { "id": "4.d", "title": "Références documentaires précises",            "description": "", "regulationRef": "4 d" }
+      ]
+    },
+
+    {
+      "id": "5",
+      "title": "ANALYSE BÉNÉFICE / RISQUE & GESTION DES RISQUES",
+      "items": [
+        { "id": "5.a", "title": "Analyse bénéfice / risque (Ann. I §1 & §8)", "description": "", "regulationRef": "5 a" },
+        { "id": "5.b", "title": "Gestion des risques (Ann. I §3)",            "description": "", "regulationRef": "5 b" }
+      ]
+    },
+
+    {
+      "id": "6",
+      "title": "VÉRIFICATION & VALIDATION DU PRODUIT",
+      "items": [
+        { "id": "6.1.1",        "title": "Type d’échantillon & stabilité",                                     "description": "", "regulationRef": "6.1.1" },
+        { "id": "6.1.2.1.a",    "title": "Justesse de mesure",                                                 "description": "", "regulationRef": "6.1.2.1 a" },
+        { "id": "6.1.2.1.b",    "title": "Précision (répétabilité, reproductibilité)",                         "description": "", "regulationRef": "6.1.2.1 b" },
+        { "id": "6.1.2.2",      "title": "Sensibilité analytique",                                             "description": "", "regulationRef": "6.1.2.2" },
+        { "id": "6.1.2.3",      "title": "Spécificité analytique (interférences, réactivité croisée)",         "description": "", "regulationRef": "6.1.2.3" },
+        { "id": "6.1.2.4",      "title": "Traçabilité métrologique",                                           "description": "", "regulationRef": "6.1.2.4" },
+        { "id": "6.1.2.5",      "title": "Plage de mesure & seuil de détection",                               "description": "", "regulationRef": "6.1.2.5" },
+        { "id": "6.1.2.6",      "title": "Définition de la valeur-seuil & stats (ROC…)",                       "description": "", "regulationRef": "6.1.2.6" },
+        { "id": "6.1.3",        "title": "Rapport sur les performances analytiques (Ann. XIII)",               "description": "", "regulationRef": "6.1.3" },
+
+        { "id": "6.2",          "title": "Rapport sur l’évaluation des performances (cliniques)",              "description": "", "regulationRef": "6.2" },
+
+        { "id": "6.3.1",        "title": "Stabilité – durée de conservation",                                  "description": "", "regulationRef": "6.3.1" },
+        { "id": "6.3.2",        "title": "Stabilité à l’utilisation",                                          "description": "", "regulationRef": "6.3.2" },
+        { "id": "6.3.3",        "title": "Stabilité pendant le transport",                                     "description": "", "regulationRef": "6.3.3" },
+
+        { "id": "6.4",          "title": "Validation du logiciel",                                             "description": "", "regulationRef": "6.4" },
+
+        { "id": "6.5.a",        "title": "Conditions environnementales (stérilité)",                           "description": "", "regulationRef": "6.5 a" },
+        { "id": "6.5.b",        "title": "Tissus / cellules / substances bio (origine & collecte)",            "description": "", "regulationRef": "6.5 b" },
+        { "id": "6.5.c",        "title": "Fonction de mesurage – exactitude",                                  "description": "", "regulationRef": "6.5 c" },
+        { "id": "6.5.d",        "title": "Connexion à d’autres appareils – preuve de conformité combinée",    "description": "", "regulationRef": "6.5 d" }
+      ]
+    }
+  ]
+}
