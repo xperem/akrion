@@ -35,30 +35,6 @@ const TOOLS = [
     icon : BookOpen,
   },
   {
-    href : '/checklist/documentation-mdr',
-    title: 'Checklist documentation technique (MDR 2017/745)',
-    desc : 'Checklist des éléments à fournir dans une documentation technique MDR 2017/745.',
-    icon : ClipboardList,
-  },
-  {
-    href : '/checklist/documentation-ivdr',
-    title: 'Checklist documentation technique (IVDR 2017/746)',
-    desc : 'Checklist des éléments à fournir dans une documentation technique IVDR 2017/746.',
-    icon : ClipboardList,
-  },
-  {
-    href : '/checklist/documentation-iec62304',
-    title: 'Checklist IEC 62304',
-    desc : 'Checklist des éléments à fournir selon la norme IEC 62304.',
-    icon : CircuitBoard,
-  },
-  {
-    href : '/checklist/qms',
-    title: 'Checklist SMQ ISO 13485',
-    desc : 'Checklist des éléments à fournir pour un SMQ ISO 13485.',
-    icon : ShieldCheck,
-  },
-  {
   href : '/software-safety',
   title: 'Classification sécurité logicielle (IEC 62304)',
   desc : 'Attribuez la classe A / B / C de votre logiciel.',
