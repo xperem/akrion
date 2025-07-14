@@ -11,31 +11,31 @@ import {
 
 const TOOLS = [
   {
-    href : '/md-qualification',
+    href : '/toolbox/md-qualification',
     title: 'Qualification DM',
     desc : 'Déterminez si votre logiciel est un Dispositif Médical.',
     icon : HeartPulse,
   },
   {
-    href : '/regulatory-qualification',
+    href : '/toolbox/regulatory-qualification',
     title: 'Qualification réglementaire',
     desc : 'Déterminez si votre logiciel relève du règlement MDR ou IVDR.',
     icon : ScrollText,
   },
   {
-    href : '/classification',
+    href : '/toolbox/classification',
     title: 'Classification (règle 11)',
     desc : 'Identifiez la classe (I / IIa / IIb / III) de votre MDSW.',
     icon : Layers3,
   },
   {
-    href : '/ressources',
+    href : '/toolbox/ressources',
     title: 'Ressources utiles',
     desc : 'Liens utiles dans votre parcours réglementaire.',
     icon : BookOpen,
   },
   {
-  href : '/software-safety',
+  href : '/toolbox/software-safety',
   title: 'Classification sécurité logicielle (IEC 62304)',
   desc : 'Attribuez la classe A / B / C de votre logiciel.',
   icon : CircuitBoard,   // ou une autre icône déjà dispo
@@ -48,7 +48,7 @@ export default function Home() {
     <div className="space-y-14">
       {/* Hero */}
       <section className="text-center py-14">
-        <h1 className="text-4xl font-bold mb-4">Bienvenue sur Akrion</h1>
+        <h1 className="text-4xl font-bold mb-4">Bienvenue sur Akrion Toolbox</h1>
         <p className="text-lg text-gray-700 max-w-2xl mx-auto">
           La boîte à outils pour la conformité des logiciels dispositifs médicaux&nbsp;:
           qualification, classification, documentation et plus encore.
