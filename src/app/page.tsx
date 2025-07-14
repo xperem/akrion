@@ -15,12 +15,6 @@ export default function Landing() {
       icon: ToolCaseIcon,
     },
     {
-      href: '/akrion-app',
-      title: 'Akrion App',
-      desc: 'Créez vos produits, suivez une roadmap de certification complète (MVP bientôt).',
-      icon: Workflow,
-    },
-    {
       href: '/consulting',
       title: 'Akrion Consulting',
       desc: 'Besoin d’un expert QARA ? Découvrez mes services d’accompagnement.',
