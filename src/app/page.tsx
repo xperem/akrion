@@ -11,6 +11,12 @@ export default function Landing() {
       icon : ToolCaseIcon,
     },
     {
+      href : '/akrion-app',
+      title: 'Akrion App',
+      desc : 'Le SaaS de référence pour la préparation de votre certification.',
+      icon : ToolCaseIcon,
+    },
+    {
       href : '/consulting',
       title: 'Akrion Consulting',
       desc : 'Besoin d’un expert QARA ? Découvrez mes services d’accompagnement.',
