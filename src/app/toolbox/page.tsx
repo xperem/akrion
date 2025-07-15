@@ -47,7 +47,7 @@ export default function Home() {
   return (
     <div className="space-y-14">
       {/* Hero */}
-      <section className="text-center py-14">
+      <section className="text-center mb-12">
         <h1 className="text-4xl font-bold mb-4">Bienvenue sur Akrion Toolbox</h1>
         <p className="text-lg text-gray-700 max-w-2xl mx-auto">
           La boîte à outils pour la conformité des logiciels dispositifs médicaux&nbsp;:

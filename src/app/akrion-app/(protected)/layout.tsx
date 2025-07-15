@@ -15,7 +15,7 @@ export default async function ProtectedLayout({ children }: Props) {
   /* ─── Mise en page protégée sans header ─── */
   return (
     <div className="flex min-h-screen flex-col bg-gradient-to-br from-indigo-50 to-blue-100">
-      <main className="flex-1 flex flex-col items-center py-12 px-4">
+      <main className="flex-1 flex flex-col items-center py-12 px-4 bg-transparent">
         <div className="w-full max-w-4xl rounded-2xl bg-white/80 p-8 shadow-lg backdrop-blur-sm">
           {children}
         </div>

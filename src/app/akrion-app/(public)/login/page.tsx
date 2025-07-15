@@ -21,7 +21,7 @@ export default function LoginPage() {
   }
 
   return (
-    <main className="flex min-h-screen items-center justify-center bg-gradient-to-br from-blue-50 to-indigo-100 px-4">
+    <main className="flex min-h-screen items-start justify-center bg-gradient-to-br ... px-4 pt-[12vh]">
       <div className="w-full max-w-sm space-y-6 rounded-xl bg-white p-8 shadow">
         <h1 className="text-center text-2xl font-bold">Connexion</h1>
         <form onSubmit={handleSubmit} className="space-y-4">

@@ -22,7 +22,7 @@ export default function RootLayout({
         <Navbar />
 
         {/* Contenu principal */}
-        <main className="flex-1 max-w-6xl mx-auto px-4 py-10">
+        <main className="flex-1 px-4 py-10 bg-transparent">
           {children}
         </main>
 

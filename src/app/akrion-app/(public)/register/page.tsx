@@ -33,7 +33,7 @@ export default function RegisterPage() {
   }
 
   return (
-    <main className="flex min-h-screen items-center justify-center bg-gradient-to-br from-blue-50 to-indigo-100 px-4">
+     <main className="flex min-h-screen items-start justify-center bg-gradient-to-br ... px-4 pt-[12vh]">
       <form
         onSubmit={handleRegister}
         className="w-full max-w-sm space-y-4 rounded-xl bg-white p-6 shadow"
