@@ -9,7 +9,7 @@ import {
   SelectItem,
 } from '@/components/ui/select';
 
-import ToolTimeline from '@/components/akrion-app/ToolTimeline';
+import ToolTimeline from '@/components/akrion-app/tools/ToolTimeline';
 
 type Product = { id: string; name: string | null };
 type StoredResult = {
