@@ -1,5 +1,5 @@
 import { Wizard } from '@/components/akrion-toolbox/decision-tree/Wizard';
-import { softwareSafetyConfig } from '@/lib/softwareSafetyClass/softwareSafetyConfig';
+import { softwareSafetyConfig } from '@/lib/akrion-toolbox/softwareSafetyClass/softwareSafetyConfig';
 
 export const metadata = {
   title: 'Classification sécurité logicielle • Akrion',
