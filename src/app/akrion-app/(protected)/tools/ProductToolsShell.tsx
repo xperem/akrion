@@ -3,15 +3,43 @@
 import { useSearchParams, useRouter } from 'next/navigation';
 import { useState, useEffect, useCallback } from 'react';
 import { Product } from '@/types/akrion-app/product';
+import { 
+  ArrowLeft, 
+  Package, 
+  CheckCircle2, 
+  CheckCircle,
+  Clock, 
+  RefreshCw,
+  ChevronDown,
+  Settings,
+  PlayCircle,
+  ExternalLink,
+  HeartPulse,
+  ScrollText,
+  Layers3,
+  ShieldCheck,
+} from 'lucide-react';
 import {
-  Select,
-  SelectTrigger,
-  SelectValue,
-  SelectContent,
-  SelectItem,
-} from '@/components/ui/select';
-import ToolTimeline from '@/components/akrion-app/ToolTimeline';
-import { ArrowLeft, Package, CheckCircle2, Clock, TrendingUp, RefreshCw } from 'lucide-react';
+  Sheet,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+} from '@/components/ui/sheet';
+import WizardLite from '@/components/akrion-app/WizardLite';
+
+import { mdConfig }             from '@/lib/akrion-toolbox/mdQualification/mdConfig';
+import { regulatoryConfig }     from '@/lib/akrion-toolbox/regulatoryQualification/regulatoryConfig';
+import { classificationConfig } from '@/lib/akrion-toolbox/classification/classificationConfig';
+import { softwareSafetyConfig } from '@/lib/akrion-toolbox/softwareSafetyClass/softwareSafetyConfig';
+import { toast } from 'sonner';
+
+type StatusType = 'completed' | 'in-progress' | 'pending';
+type ColorType = 'emerald' | 'blue' | 'amber' | 'gray';
+
+interface StatusIconProps {
+  status: StatusType;
+  color: ColorType;
+}
 
 interface StoredResult {
   tool: string;
@@ -23,6 +51,56 @@ interface Props {
   initialResultsByProduct: Record<string, StoredResult[]>;
 }
 
+interface WorkflowStep {
+  id: string;
+  title: string;
+  description: string;
+  status: StatusType;
+  color: ColorType;
+  icon: React.ComponentType<{ className?: string }>;
+}
+
+// Configuration des outils avec leurs configs
+const TOOLS = [
+  { id: 'qualification_dm', label: 'Qualification DM',  icon: HeartPulse,  config: mdConfig          },
+  { id: 'regulation',       label: 'Règlement',         icon: ScrollText,  config: regulatoryConfig  },
+  { id: 'class_rule11',     label: 'Classe (règle 11)', icon: Layers3,     config: classificationConfig },
+  { id: 'software_safety',  label: 'Sécurité logicielle', icon: ShieldCheck, config: softwareSafetyConfig },
+] as const;
+
+type ResultPayload = { answers: Record<string,'yes'|'no'>; resultKey: string };
+
+const StatusIcon = ({ status, color }: StatusIconProps) => {
+  const colorMap: Record<ColorType, string> = {
+    emerald: 'text-emerald-600 bg-emerald-50',
+    blue: 'text-blue-600 bg-blue-50',
+    amber: 'text-amber-600 bg-amber-50',
+    gray: 'text-gray-400 bg-gray-50'
+  };
+
+  if (status === 'completed') {
+    return (
+      <div className={`w-8 h-8 rounded-full flex items-center justify-center ${colorMap[color]}`}>
+        <CheckCircle className="w-4 h-4" />
+      </div>
+    );
+  }
+  
+  if (status === 'in-progress') {
+    return (
+      <div className={`w-8 h-8 rounded-full flex items-center justify-center ${colorMap.blue}`}>
+        <PlayCircle className="w-4 h-4" />
+      </div>
+    );
+  }
+  
+  return (
+    <div className={`w-8 h-8 rounded-full flex items-center justify-center ${colorMap.gray}`}>
+      <Clock className="w-4 h-4" />
+    </div>
+  );
+};
+
 export default function ProductToolsShell({ 
   products, 
   initialResultsByProduct 
@@ -30,23 +108,18 @@ export default function ProductToolsShell({
   const params = useSearchParams();
   const router = useRouter();
   
-  // État pour les résultats avec mise à jour automatique
+  // États pour les résultats avec mise à jour automatique
   const [currentResults, setCurrentResults] = useState(initialResultsByProduct);
   const [isRefreshing, setIsRefreshing] = useState(false);
+  const [dropdownOpen, setDropdownOpen] = useState(false);
   const [lastRefresh, setLastRefresh] = useState(Date.now());
+  const [openSheet, setOpenSheet] = useState<string | null>(null);
 
   // Fonction pour rafraîchir les données
   const refreshData = useCallback(async () => {
     setIsRefreshing(true);
     try {
-      // Simuler un délai de chargement
       await new Promise(resolve => setTimeout(resolve, 500));
-      
-      // Ici vous devriez appeler votre API pour récupérer les données mises à jour
-      // const updatedResults = await fetchUpdatedResults();
-      // setCurrentResults(updatedResults);
-      
-      // Pour l'instant, on force juste une re-render
       router.refresh();
       setLastRefresh(Date.now());
     } catch (error) {
@@ -61,7 +134,6 @@ export default function ProductToolsShell({
     const interval = setInterval(() => {
       refreshData();
     }, 30000);
-
     return () => clearInterval(interval);
   }, [refreshData]);
 
@@ -72,10 +144,10 @@ export default function ProductToolsShell({
 
   if (products.length === 0) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-slate-50 to-white flex items-center justify-center p-4">
+      <div className="min-h-screen bg-gray-50 flex items-center justify-center p-4">
         <div className="text-center space-y-8 max-w-md">
           <div className="relative">
-            <div className="w-20 h-20 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-2xl flex items-center justify-center mx-auto shadow-lg">
+            <div className="w-20 h-20 bg-blue-600 rounded-2xl flex items-center justify-center mx-auto shadow-lg">
               <Package className="w-10 h-10 text-white" />
             </div>
             <div className="absolute -top-1 -right-1 w-6 h-6 bg-red-500 rounded-full flex items-center justify-center">
@@ -84,19 +156,19 @@ export default function ProductToolsShell({
           </div>
           
           <div className="space-y-3">
-            <h3 className="text-2xl font-bold text-slate-900">
+            <h3 className="text-2xl font-bold text-gray-900">
               Aucun produit disponible
             </h3>
-            <p className="text-slate-600 leading-relaxed">
+            <p className="text-gray-600 leading-relaxed">
               Créez votre premier produit dans le Dashboard pour commencer à utiliser nos outils réglementaires.
             </p>
           </div>
           
           <button 
             onClick={() => router.push('/akrion-app/dashboard')}
-            className="group inline-flex items-center space-x-2 px-6 py-3 bg-gradient-to-r from-blue-500 to-indigo-600 text-white rounded-xl font-medium hover:from-blue-600 hover:to-indigo-700 transform hover:scale-105 transition-all duration-200 shadow-lg hover:shadow-xl"
+            className="inline-flex items-center space-x-2 px-6 py-3 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700 transition-colors"
           >
-            <ArrowLeft className="w-4 h-4 group-hover:-translate-x-0.5 transition-transform" />
+            <ArrowLeft className="w-4 h-4" />
             <span>Aller au Dashboard</span>
           </button>
         </div>
@@ -134,178 +206,316 @@ export default function ProductToolsShell({
   const handleProductChange = (newProductId: string) => {
     if (products.some(p => p.id === newProductId)) {
       setSelectedProductId(newProductId);
+      setDropdownOpen(false);
+    }
+  };
+
+  const handleLaunchTool = (toolId: string) => {
+    setOpenSheet(toolId);
+  };
+
+  const handleEditTool = (toolId: string) => {
+    setOpenSheet(toolId);
+  };
+
+  // Handler pour sauvegarder les résultats
+  const handleSave = async (
+    toolId: string,
+    answers: Record<string,'yes'|'no'>,
+    resultKey: string
+  ) => {
+    const body = { answers, resultKey };
+
+    const res = await fetch(`/api/tools/${toolId}?product=${selectedProductId}`, {
+      method:  'POST',
+      body:    JSON.stringify(body),
+      headers: { 'Content-Type': 'application/json' },
+    });
+
+    if (res.ok) {
+      toast.success('Résultat enregistré');
+      
+      // Mettre à jour les résultats localement
+      setCurrentResults(prev => {
+        const existing = prev[selectedProductId] || [];
+        const updated = [...existing.filter(r => r.tool !== toolId), { tool: toolId, result: body }];
+        return { ...prev, [selectedProductId]: updated };
+      });
+      
+      setOpenSheet(null);
+      setLastRefresh(Date.now());
+    } else {
+      toast.error('Erreur serveur');
+    }
+  };
+
+  // Helper pour afficher les résultats
+  const preview = (r?: ResultPayload) => {
+    if (!r) return 'En attente';
+    switch (r.resultKey) {
+      case 'DM':        return 'Dispositif médical';
+      case 'NOT_DM':    return 'Pas un DM';
+      default:          return r.resultKey;
     }
   };
 
   const selectedProduct = products.find(p => p.id === selectedProductId);
   const initialResults = currentResults[selectedProductId] || [];
-  const progressPercentage = Math.round((initialResults.length / 4) * 100);
+  const completedSteps = initialResults.length;
+  const totalSteps = 4;
+  const progressPercentage = Math.round((completedSteps / totalSteps) * 100);
+
+  // Convertir les résultats en format utilisable
+  const current = Object.fromEntries(
+    initialResults.map((r) => [r.tool, r.result])
+  ) as Record<string, ResultPayload>;
+
+  // Convertir les résultats en étapes de workflow
+  const workflowSteps: WorkflowStep[] = TOOLS.map(tool => ({
+    id: tool.id,
+    title: tool.label,
+    description: preview(current[tool.id]),
+    status: current[tool.id] ? 'completed' : 'pending',
+    color: 'emerald',
+    icon: tool.icon
+  }));
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-white">
-      {/* Header moderne et épuré */}
-      <div className="sticky top-0 z-20 bg-white/95 backdrop-blur-md border-b border-slate-200/60">
-        <div className="mx-auto max-w-6xl px-6 py-4">
-          <div className="flex items-center justify-between">
-            {/* Logo et titre - plus compact */}
+    <div className="min-h-screen" data-full-height>
+      {/* Header unifié avec titre et sélecteur */}
+      <header className="bg-white/80 backdrop-blur-sm border-b border-gray-200/60 sticky top-0 z-10">
+        <div className="px-6 py-4">
+          <div className="flex items-center justify-between mb-4">
             <div className="flex items-center space-x-3">
-              <div className="relative">
-                <div className="w-10 h-10 bg-gradient-to-r from-blue-500 to-indigo-600 rounded-xl flex items-center justify-center shadow-md">
-                  <span className="text-white font-bold text-lg">A</span>
-                </div>
-                <div className="absolute -top-0.5 -right-0.5 w-3 h-3 bg-emerald-500 rounded-full border-2 border-white"></div>
+              <div className="w-10 h-10 bg-blue-600 rounded-lg flex items-center justify-center shadow-md">
+                <span className="text-white font-semibold text-lg">A</span>
               </div>
               <div>
-                <h1 className="text-xl font-bold text-slate-900">
+                <h1 className="text-xl font-bold text-gray-900">
                   Outils Réglementaires
                 </h1>
-                <p className="text-xs text-slate-500">
-                  Analyse intelligente de conformité
+                <p className="text-gray-600 text-sm">
+                  Analyse intelligente de conformité réglementaire
                 </p>
               </div>
             </div>
-
-            {/* Bouton de rafraîchissement et sélecteur */}
+            
             <div className="flex items-center space-x-4">
               <button
                 onClick={refreshData}
                 disabled={isRefreshing}
-                className={`p-2 rounded-lg border transition-all duration-200 ${
-                  isRefreshing 
-                    ? 'bg-slate-100 border-slate-200 cursor-not-allowed' 
-                    : 'bg-white border-slate-200 hover:border-blue-400 hover:bg-blue-50'
-                }`}
-                title="Actualiser les données"
+                className="p-2 text-gray-500 hover:text-gray-700 hover:bg-white/60 rounded-lg transition-colors"
+                title="Actualiser"
               >
-                <RefreshCw className={`w-4 h-4 text-slate-600 ${isRefreshing ? 'animate-spin' : ''}`} />
+                <RefreshCw className={`w-4 h-4 ${isRefreshing ? 'animate-spin' : ''}`} />
               </button>
               
-              <span className="text-sm font-medium text-slate-600 hidden sm:block">
-                Produit :
-              </span>
-              <Select value={selectedProductId} onValueChange={handleProductChange}>
-                <SelectTrigger className="w-[240px] bg-white/80 border-slate-200 hover:border-blue-400 transition-all duration-200 shadow-sm hover:shadow-md">
-                  <SelectValue placeholder="Choisir un produit" />
-                </SelectTrigger>
-                <SelectContent className="bg-white/95 backdrop-blur-md border-slate-200">
-                  {products
-                    .filter(product => product.id)
-                    .map((product) => (
-                      <SelectItem key={product.id} value={product.id!} className="hover:bg-slate-50">
-                        <div className="flex items-center gap-2">
-                          <div className="w-2 h-2 bg-gradient-to-r from-blue-500 to-indigo-600 rounded-full" />
-                          <span className="font-medium text-slate-900">{product.name || 'Sans nom'}</span>
-                        </div>
-                      </SelectItem>
-                    ))}
-                </SelectContent>
-              </Select>
+              <div className="relative">
+                <button
+                  onClick={() => setDropdownOpen(!dropdownOpen)}
+                  className="flex items-center space-x-2 px-3 py-2 bg-white/60 border border-gray-200/60 rounded-lg hover:bg-white/80 hover:border-gray-300 transition-colors backdrop-blur-sm text-sm"
+                >
+                  <Package className="w-4 h-4 text-gray-500" />
+                  <span className="font-medium text-gray-900">{selectedProduct?.name || 'Sans nom'}</span>
+                  <ChevronDown className="w-4 h-4 text-gray-500" />
+                </button>
+                
+                {dropdownOpen && (
+                  <div className="absolute right-0 mt-2 w-72 bg-white/95 backdrop-blur-md border border-gray-200/60 rounded-lg shadow-lg z-20">
+                    <div className="p-2">
+                      {products
+                        .filter(product => product.id)
+                        .map((product) => (
+                          <button
+                            key={product.id}
+                            onClick={() => handleProductChange(product.id!)}
+                            className="w-full flex items-center space-x-3 px-3 py-2 text-left hover:bg-gray-50/60 rounded-md transition-colors"
+                          >
+                            <div className="w-2 h-2 bg-blue-600 rounded-full" />
+                            <span className="text-gray-900">{product.name || 'Sans nom'}</span>
+                          </button>
+                        ))}
+                    </div>
+                  </div>
+                )}
+              </div>
             </div>
           </div>
+
+          {/* Carte de statut consolidée dans le header */}
+          {selectedProduct && (
+            <div className="bg-white/60 backdrop-blur-sm rounded-lg border border-blue-200/60 p-4 shadow-sm">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center space-x-3">
+                  <div className="w-10 h-10 bg-white/80 rounded-lg flex items-center justify-center shadow-sm">
+                    <Package className="w-5 h-5 text-blue-600" />
+                  </div>
+                  <div>
+                    <h2 className="text-base font-semibold text-gray-900">
+                      {selectedProduct.name}
+                    </h2>
+                    <p className="text-gray-600 text-sm">
+                      Analyse réglementaire
+                    </p>
+                  </div>
+                </div>
+                
+                <div className="flex items-center space-x-6">
+                  <div className="text-center">
+                    <div className="text-xl font-bold text-gray-900">{completedSteps}</div>
+                    <div className="text-xs text-gray-600">Terminés</div>
+                  </div>
+                  <div className="text-center">
+                    <div className="text-xl font-bold text-gray-900">{totalSteps - completedSteps}</div>
+                    <div className="text-xs text-gray-600">Restants</div>
+                  </div>
+                  <div className="text-center">
+                    <div className="text-xl font-bold text-blue-600">{progressPercentage}%</div>
+                    <div className="text-xs text-gray-600">Progression</div>
+                  </div>
+                </div>
+              </div>
+              
+              {/* Barre de progression dans le header */}
+              <div className="mt-3 space-y-1">
+                <div className="flex justify-between items-center">
+                  <span className="text-sm font-medium text-gray-700">Avancement</span>
+                  <span className="text-sm text-gray-600">{completedSteps} / {totalSteps}</span>
+                </div>
+                <div className="w-full bg-white/40 rounded-full h-1.5">
+                  <div 
+                    className="bg-blue-600 h-1.5 rounded-full transition-all duration-300"
+                    style={{ width: `${progressPercentage}%` }}
+                  />
+                </div>
+              </div>
+            </div>
+          )}
         </div>
-      </div>
+      </header>
 
       {/* Contenu principal */}
-      <div className="mx-auto max-w-6xl px-6 py-8 space-y-8">
-        {/* Carte produit - redesignée */}
-        {selectedProduct && (
-          <div className="bg-white/80 backdrop-blur-sm border border-slate-200/60 rounded-2xl p-6 shadow-lg">
-            <div className="flex items-center justify-between mb-6">
-              <div className="flex items-center space-x-4">
-                <div className="w-12 h-12 bg-gradient-to-r from-blue-500 to-indigo-600 rounded-xl flex items-center justify-center shadow-md">
-                  <Package className="w-6 h-6 text-white" />
-                </div>
-                <div>
-                  <h2 className="text-xl font-bold text-slate-900">
-                    {selectedProduct.name}
-                  </h2>
-                  <p className="text-slate-600 text-sm">
-                    Analyse réglementaire en cours
-                  </p>
-                </div>
-              </div>
-
-              {/* Stats modernisées */}
-              <div className="flex items-center space-x-6">
-                <div className="text-center">
-                  <div className="flex items-center justify-center w-10 h-10 bg-emerald-50 rounded-lg mb-2">
-                    <CheckCircle2 className="w-5 h-5 text-emerald-600" />
-                  </div>
-                  <div className="text-xl font-bold text-slate-900">{initialResults.length}</div>
-                  <div className="text-xs text-slate-500">Terminés</div>
-                </div>
-                <div className="text-center">
-                  <div className="flex items-center justify-center w-10 h-10 bg-blue-50 rounded-lg mb-2">
-                    <Clock className="w-5 h-5 text-blue-600" />
-                  </div>
-                  <div className="text-xl font-bold text-slate-900">{4 - initialResults.length}</div>
-                  <div className="text-xs text-slate-500">Restants</div>
-                </div>
-                <div className="text-center">
-                  <div className="flex items-center justify-center w-10 h-10 bg-indigo-50 rounded-lg mb-2">
-                    <TrendingUp className="w-5 h-5 text-indigo-600" />
-                  </div>
-                  <div className="text-xl font-bold text-slate-900">{progressPercentage}%</div>
-                  <div className="text-xs text-slate-500">Progression</div>
-                </div>
-              </div>
-            </div>
-
-            {/* Barre de progression épurée */}
-            <div className="space-y-2">
-              <div className="flex items-center justify-between">
-                <span className="text-sm font-medium text-slate-700">Avancement</span>
-                <div className="flex items-center space-x-2">
-                  <span className="text-sm font-medium text-slate-700">{progressPercentage}%</span>
-                 
-                </div>
-              </div>
-              <div className="w-full bg-slate-200 rounded-full h-2">
-                <div 
-                  className="bg-gradient-to-r from-blue-500 to-indigo-600 h-2 rounded-full transition-all duration-700 ease-out"
-                  style={{ width: `${progressPercentage}%` }}
-                />
-              </div>
-            </div>
-          </div>
-        )}
-
-        {/* Workflow section - plus moderne */}
-        <div className="bg-white/80 backdrop-blur-sm border border-slate-200/60 rounded-2xl overflow-hidden shadow-lg">
-          <div className="bg-gradient-to-r from-slate-50 to-white px-6 py-4 border-b border-slate-200/60">
+      <main className="px-6 py-6">
+        {/* Workflow modernisé */}
+        <div className="bg-white/80 backdrop-blur-sm rounded-xl border border-gray-200/60 shadow-sm">
+          <div className="p-4 border-b border-gray-100/60">
             <div className="flex items-center justify-between">
               <div>
-                <h3 className="text-lg font-semibold text-slate-900">
-                  Workflow d'analyse réglementaire
+                <h3 className="text-base font-semibold text-gray-900">
+                  Workflow d'analyse
                 </h3>
-                <p className="text-slate-600 text-sm mt-1">
+                <p className="text-sm text-gray-500">
                   Suivez les étapes pour analyser votre produit
                 </p>
               </div>
-              <div className="flex items-center space-x-2 text-xs text-slate-500">
-                <div className={`w-2 h-2 rounded-full ${isRefreshing ? 'bg-blue-500 animate-pulse' : 'bg-emerald-500'}`}></div>
+              <div className="flex items-center space-x-2 text-sm text-gray-500">
+                <div className={`w-2 h-2 rounded-full ${isRefreshing ? 'bg-blue-500 animate-pulse' : 'bg-green-500'}`}></div>
                 <span>{isRefreshing ? 'Actualisation...' : 'Données à jour'}</span>
               </div>
             </div>
           </div>
           
-          <div className="p-6">
-            <ToolTimeline
-  key={selectedProductId}
-  productId={selectedProductId}
-  initialResults={initialResults}
-  onResultSaved={(tool, result) => {
-    setCurrentResults(prev => {
-      const existing = prev[selectedProductId] || [];
-      const updated = [...existing.filter(r => r.tool !== tool), { tool, result }];
-      return { ...prev, [selectedProductId]: updated };
-    });
-    setLastRefresh(Date.now());
-  }}
-/>
+          <div className="p-4">
+            <div className="space-y-3">
+              {workflowSteps.map((step) => (
+                <div key={step.id} className="group">
+                  <div 
+                    className="flex items-center space-x-4 p-3 rounded-lg border border-gray-100 hover:border-blue-200 hover:bg-blue-50/30 transition-all duration-200 cursor-pointer"
+                    onClick={() => step.status === 'completed' ? handleEditTool(step.id) : handleLaunchTool(step.id)}
+                  >
+                    <StatusIcon status={step.status} color={step.color} />
+                    
+                    <div className="flex-1">
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center space-x-3">
+                          <step.icon className="w-4 h-4 text-gray-500" />
+                          <div>
+                            <h4 className="font-medium text-gray-900 group-hover:text-blue-900 text-sm">
+                              {step.title}
+                            </h4>
+                            <p className="text-xs text-gray-500 mt-0.5">
+                              {step.description}
+                            </p>
+                          </div>
+                        </div>
+                        <div className="flex items-center space-x-3">
+                          {step.status === 'completed' && (
+                            <span className="text-xs text-green-600 font-medium bg-green-50 px-2 py-1 rounded-full">
+                              Terminé
+                            </span>
+                          )}
+                          <button 
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              step.status === 'completed' ? handleEditTool(step.id) : handleLaunchTool(step.id);
+                            }}
+                            className="p-1.5 text-gray-400 hover:text-blue-600 hover:bg-blue-100 rounded-lg transition-colors"
+                            title={step.status === 'completed' ? 'Modifier le résultat' : 'Lancer l\'outil'}
+                          >
+                            {step.status === 'completed' ? (
+                              <Settings className="w-4 h-4" />
+                            ) : (
+                              <PlayCircle className="w-4 h-4" />
+                            )}
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+            
+            {/* Message d'aide */}
+            <div className="mt-4 p-3 bg-blue-50 rounded-lg border border-blue-200">
+              <div className="flex items-start space-x-3">
+                <div className="w-4 h-4 bg-blue-500 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                  <span className="text-white text-xs font-bold">i</span>
+                </div>
+                <div>
+                  <p className="text-sm text-blue-800 font-medium">
+                    Comment utiliser les outils
+                  </p>
+                  <p className="text-xs text-blue-700 mt-1">
+                    Cliquez sur une étape pour lancer l'outil correspondant dans le panneau latéral. Les résultats seront automatiquement sauvegardés.
+                  </p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
+      </main>
+
+      {/* Sheets pour les outils */}
+      {TOOLS.map(({ id, label, config }) =>
+        openSheet === id ? (
+          <Sheet key={id} open onOpenChange={() => setOpenSheet(null)}>
+            <SheetContent
+              side="right"
+              className="
+                w-full 
+                max-w-[640px]      
+                lg:max-w-[720px]   
+                overflow-y-auto 
+                bg-white/95 
+                px-8 py-10
+              "
+            >
+              <SheetHeader className="mb-8">
+                <SheetTitle className="text-2xl font-semibold">
+                  {label}
+                </SheetTitle>
+              </SheetHeader>
+
+              <WizardLite
+                config={config}
+                initial={current[id]}
+                onFinish={(answers, rk) => handleSave(id, answers, rk)}
+              />
+            </SheetContent>
+          </Sheet>
+        ) : null
+      )}
     </div>
   );
 }

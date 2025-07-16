@@ -6,8 +6,8 @@ import  Navbar from '@/components/akrion-toolbox/layout/NavBar';
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
 
 export const metadata: Metadata = {
-  title: 'Akrion • Toolbox DM',
-  description: 'Outils de qualification et de conformité pour logiciels médicaux',
+  title: 'Akrion',
+  description: 'Outils de conformité pour logiciels médicaux',
 };
 
 export default function RootLayout({
@@ -21,8 +21,8 @@ export default function RootLayout({
         {/* Navbar shadcn */}
         <Navbar />
 
-        {/* Contenu principal */}
-        <main className="flex-1 px-4 py-10 bg-transparent">
+        {/* Contenu principal avec padding conditionnel */}
+        <main className="flex-1 px-4 bg-transparent [&:has([data-full-height])]:py-0 py-10">
           {children}
         </main>
 
