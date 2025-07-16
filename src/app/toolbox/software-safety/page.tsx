@@ -1,4 +1,4 @@
-import { Wizard } from '@/components/decision-tree/Wizard';
+import { Wizard } from '@/components/akrion-toolbox/decision-tree/Wizard';
 import { softwareSafetyConfig } from '@/lib/softwareSafetyClass/softwareSafetyConfig';
 
 export const metadata = {

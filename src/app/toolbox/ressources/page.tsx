@@ -1,5 +1,5 @@
-import { resourceLinks } from '@/lib/resource/resourceLinks';
-import { ResourceCard } from '@/components/resource/ResourceCard';
+import { resourceLinks } from '@/lib/akrion-toolbox/resource/resourceLinks';
+import { ResourceCard } from '@/components/akrion-toolbox/resource/ResourceCard';
 
 export const metadata = {
   title: 'Ressources utiles • Akrion',

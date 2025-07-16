@@ -19,25 +19,49 @@ export type Database = {
           created_at: string | null
           description: string | null
           id: string
+          intended_environment: string | null
           intended_use: string | null
+          intended_user: string | null
+          is_dm: boolean | null
+          mdr_class: string | null
           name: string
+          operation_principle: string | null
           owner_id: string | null
+          patient_population: string | null
+          regulation: string | null
+          software_safety: string | null
         }
         Insert: {
           created_at?: string | null
           description?: string | null
           id?: string
+          intended_environment?: string | null
           intended_use?: string | null
+          intended_user?: string | null
+          is_dm?: boolean | null
+          mdr_class?: string | null
           name: string
+          operation_principle?: string | null
           owner_id?: string | null
+          patient_population?: string | null
+          regulation?: string | null
+          software_safety?: string | null
         }
         Update: {
           created_at?: string | null
           description?: string | null
           id?: string
+          intended_environment?: string | null
           intended_use?: string | null
+          intended_user?: string | null
+          is_dm?: boolean | null
+          mdr_class?: string | null
           name?: string
+          operation_principle?: string | null
           owner_id?: string | null
+          patient_population?: string | null
+          regulation?: string | null
+          software_safety?: string | null
         }
         Relationships: []
       }

@@ -1,6 +1,6 @@
 // app/classification/page.tsx
-import { Wizard } from '@/components/decision-tree/Wizard';
-import { classificationConfig } from '@/lib/classification/classificationConfig';
+import { Wizard } from '@/components/akrion-toolbox/decision-tree/Wizard';
+import { classificationConfig } from '@/lib/akrion-toolbox/classification/classificationConfig';
 
 export const metadata = {
   title: 'Classification (règle 11) • Akrion',

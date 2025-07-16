@@ -1,19 +1,32 @@
-// app/akrion-app/(protected)/dashboard/page.tsx
 import { createClient } from '@/lib/supabase/server';
 import { redirect } from 'next/navigation';
+import DashboardClient from './DashboardClient';
 
 export default async function DashboardPage() {
   const supabase = await createClient();
-  const { data: { user } } = await supabase.auth.getUser();
-  if (!user) redirect('/akrion-app/login');
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
 
-  const name = user.user_metadata?.display_name || user.email;
+  if (!user) {
+    redirect('/akrion-app/login');
+  }
 
-  return (
-    <section className="px-4 py-10">
-      <h1 className="break-words text-xl sm:text-2xl font-semibold">
-        Bienvenue sur Akrion App, {name} 👋
-      </h1>
-    </section>
-  );
+  const { data: products } = await supabase
+    .from('products')
+    .select(`
+      id,
+      name,
+      created_at,
+      description,
+      intended_use,
+      intended_user,
+      intended_environment,
+      patient_population,
+      operation_principle
+    `)
+    .eq('owner_id', user.id)
+    .order('created_at', { ascending: false });
+
+  return <DashboardClient products={products!} />;
 }
