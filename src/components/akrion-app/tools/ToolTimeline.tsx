@@ -13,7 +13,7 @@ import {
   SheetHeader,
   SheetTitle,
 } from '@/components/ui/sheet';
-import WizardLite from '@/components/akrion-app/WizardLite';
+import WizardLite from '@/components/akrion-app/tools/WizardLite';
 
 import { mdConfig }             from '@/lib/akrion-toolbox/mdQualification/mdConfig';
 import { regulatoryConfig }     from '@/lib/akrion-toolbox/regulatoryQualification/regulatoryConfig';
