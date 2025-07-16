@@ -5,7 +5,15 @@ import { regulatoryConfig } from '@/lib/akrion-toolbox/regulatoryQualification/r
 import { classificationConfig } from '@/lib/akrion-toolbox/classification/classificationConfig';
 import { softwareSafetyConfig } from '@/lib/akrion-toolbox/softwareSafetyClass/softwareSafetyConfig';
 
-export const TOOLS = [
+export interface ToolConfig {
+  id: string;
+  label: string;
+  icon: React.ComponentType<{ className?: string }>;
+  config: any; // Remplacer par le type exact de vos configs
+  description: string;
+}
+
+export const TOOLS: ToolConfig[] = [
   { 
     id: 'qualification_dm', 
     label: 'Qualification DM',  
@@ -34,6 +42,6 @@ export const TOOLS = [
     config: softwareSafetyConfig,
     description: 'Évaluez la classe de sécurité logicielle'
   },
-] as const;
+];
 
 export const TOTAL_STEPS = TOOLS.length;

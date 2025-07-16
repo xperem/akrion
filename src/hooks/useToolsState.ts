@@ -4,6 +4,9 @@
 import { useState, useEffect, useCallback } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { Product } from '@/types/akrion-app/product';
+import { WorkflowLogic } from '@/lib/utils/workflowLogic';
+import { WorkflowCascade } from '@/lib/utils/workflowCascade';
+import { TOOLS } from '@/lib/constants/tools';
 import { toast } from 'sonner';
 
 interface StoredResult {
@@ -20,7 +23,18 @@ export function useToolsState(
   const params = useSearchParams();
   const router = useRouter();
   
-  // États pour les résultats avec mise à jour automatique
+  // Fonction utilitaire pour valider l'ID du produit
+  const getValidProductId = (urlId: string | null): string => {
+    if (urlId && products.some(p => p.id === urlId)) {
+      return urlId;
+    }
+    return products[0]?.id || '';
+  };
+
+  // États de base
+  const [selectedProductId, setSelectedProductId] = useState<string>(
+    getValidProductId(params.get('product'))
+  );
   const [currentResults, setCurrentResults] = useState(initialResultsByProduct);
   const [isRefreshing, setIsRefreshing] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -52,19 +66,9 @@ export function useToolsState(
   // Mise à jour des résultats quand les props changent
   useEffect(() => {
     setCurrentResults(initialResultsByProduct);
-  }, [initialResultsByProduct]);
+  }, [initialResultsByProduct, selectedProductId]);
 
-  const getValidProductId = (urlId: string | null): string => {
-    if (urlId && products.some(p => p.id === urlId)) {
-      return urlId;
-    }
-    return products[0]?.id || '';
-  };
-
-  const [selectedProductId, setSelectedProductId] = useState<string>(
-    getValidProductId(params.get('product'))
-  );
-
+  // Synchronisation avec l'URL
   useEffect(() => {
     const currentUrlId = params.get('product');
     if (currentUrlId !== selectedProductId) {
@@ -74,6 +78,7 @@ export function useToolsState(
     }
   }, [selectedProductId, params, router]);
 
+  // Validation de l'ID du produit
   useEffect(() => {
     const validId = getValidProductId(selectedProductId);
     if (validId !== selectedProductId) {
@@ -88,7 +93,7 @@ export function useToolsState(
     }
   };
 
-  // Handler pour sauvegarder les résultats
+  // Handler pour sauvegarder les résultats avec nettoyage en cascade
   const handleSave = async (
     toolId: string,
     answers: Record<string,'yes'|'no'>,
@@ -105,14 +110,35 @@ export function useToolsState(
     if (res.ok) {
       toast.success('Résultat enregistré');
       
-      // Mettre à jour les résultats localement
+      // Mettre à jour les résultats localement avec nettoyage en cascade
       setCurrentResults(prev => {
         const existing = prev[selectedProductId] || [];
-        const updated = [...existing.filter(r => r.tool !== toolId), { tool: toolId, result: body }];
-        return { ...prev, [selectedProductId]: updated };
+        
+        // Ajouter ou mettre à jour le résultat
+        const updatedResults = existing.filter(r => r.tool !== toolId);
+        updatedResults.push({ tool: toolId, result: body });
+        
+        // Appliquer la logique de cascade
+        const cleanedResults = WorkflowCascade.cleanupCascade(toolId, body, updatedResults);
+        
+        // Vérifier s'il y a eu des suppressions
+        const deletedCount = updatedResults.length - cleanedResults.length;
+        if (deletedCount > 0 && toolId === 'qualification_dm' && body.resultKey === 'NOT_DM') {
+          toast.info(
+            `Produit non-DM : ${deletedCount} analyse(s) supprimée(s) automatiquement`
+          );
+        }
+        
+        return { ...prev, [selectedProductId]: cleanedResults };
       });
       
       setLastRefresh(Date.now());
+      
+      // Forcer une actualisation légère après un court délai pour que l'alert se déclenche
+      setTimeout(() => {
+        setCurrentResults(prev => ({ ...prev }));
+      }, 100);
+      
     } else {
       toast.error('Erreur serveur');
     }
@@ -124,20 +150,49 @@ export function useToolsState(
     switch (r.resultKey) {
       case 'DM':        return 'Dispositif médical';
       case 'NOT_DM':    return 'Pas un DM';
+      case 'MDR':       return 'Règlement MDR';
+      case 'IVDR':      return 'Règlement IVDR';
+      case 'CLASS_I':   return 'Classe I';
+      case 'CLASS_IIA': return 'Classe IIa';
+      case 'CLASS_IIB': return 'Classe IIb';
+      case 'CLASS_III': return 'Classe III';
+      case 'SAFETY_A':  return 'Sécurité classe A';
+      case 'SAFETY_B':  return 'Sécurité classe B';
+      case 'SAFETY_C':  return 'Sécurité classe C';
       default:          return r.resultKey;
     }
   };
 
   const selectedProduct = products.find(p => p.id === selectedProductId);
   const initialResults = currentResults[selectedProductId] || [];
-  const completedSteps = initialResults.length;
-  const totalSteps = 4;
-  const progressPercentage = Math.round((completedSteps / totalSteps) * 100);
-
+  
   // Convertir les résultats en format utilisable
   const current = Object.fromEntries(
     initialResults.map((r) => [r.tool, r.result])
   ) as Record<string, ResultPayload>;
+
+  // Utiliser la logique de workflow intelligente
+  const { completedSteps, availableSteps, progressPercentage } = 
+    WorkflowLogic.calculateSmartProgress(TOOLS, current);
+
+  // Handler pour lancer un outil avec vérification
+  const handleLaunchTool = (toolId: string) => {
+    if (!WorkflowLogic.canLaunchTool(toolId, current)) {
+      const message = WorkflowLogic.getBlockedMessage(toolId, current);
+      toast.error(message);
+      return;
+    }
+    setOpenSheet(toolId);
+  };
+
+  const handleEditTool = (toolId: string) => {
+    if (!WorkflowLogic.canLaunchTool(toolId, current)) {
+      const message = WorkflowLogic.getBlockedMessage(toolId, current);
+      toast.error(message);
+      return;
+    }
+    setOpenSheet(toolId);
+  };
 
   return {
     // État
@@ -149,7 +204,7 @@ export function useToolsState(
     lastRefresh,
     openSheet,
     completedSteps,
-    totalSteps,
+    availableSteps,
     progressPercentage,
     current,
     initialResults,
@@ -160,6 +215,8 @@ export function useToolsState(
     setOpenSheet,
     handleProductChange,
     handleSave,
+    handleLaunchTool,
+    handleEditTool,
     refreshData,
     preview,
   };

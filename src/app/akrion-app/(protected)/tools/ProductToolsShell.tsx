@@ -18,6 +18,11 @@ import WizardLite from '@/components/akrion-app/tools/WizardLite';
 import { ToolsHeader } from '@/components/akrion-app/tools/ToolsHeader';
 import { WorkflowStep } from '@/components/akrion-app/tools/WorkFlowStep';
 import { ToolsEmptyState } from '@/components/akrion-app/tools/ToolsEmptyState';
+import { WorkflowInfoBanner } from '@/components/akrion-app/tools/WorkflowInfoBanner';
+import { ExportButton } from '@/components/akrion-app/tools/ExportButton';
+import { InconsistencyAlert } from '@/components/akrion-app/tools/InconsistencyAlert'; // Add this import
+import { TOOLS } from '@/lib/constants/tools';
+import { WorkflowLogic } from '@/lib/utils/workflowLogic';
 import { useToolsState } from '@/hooks/useToolsState';
 
 import { mdConfig }             from '@/lib/akrion-toolbox/mdQualification/mdConfig';
@@ -35,13 +40,20 @@ interface Props {
   initialResultsByProduct: Record<string, StoredResult[]>;
 }
 
-// Configuration des outils avec leurs configs
-const TOOLS = [
-  { id: 'qualification_dm', label: 'Qualification DM',  icon: HeartPulse,  config: mdConfig          },
-  { id: 'regulation',       label: 'Règlement',         icon: ScrollText,  config: regulatoryConfig  },
-  { id: 'class_rule11',     label: 'Classe (règle 11)', icon: Layers3,     config: classificationConfig },
-  { id: 'software_safety',  label: 'Sécurité logicielle', icon: ShieldCheck, config: softwareSafetyConfig },
-] as const;
+// Définir les types pour les étapes de workflow
+type StatusType = 'completed' | 'in-progress' | 'pending' | 'available' | 'blocked';
+type ColorType = 'emerald' | 'blue' | 'amber' | 'gray' | 'red';
+
+interface WorkflowStepType {
+  id: string;
+  title: string;
+  description: string;
+  status: StatusType;
+  color: ColorType;
+  icon: React.ComponentType<{ className?: string }>;
+  blockReason?: string;
+  [key: string]: any;
+}
 
 export default function ProductToolsShell({ 
   products, 
@@ -54,13 +66,16 @@ export default function ProductToolsShell({
     dropdownOpen,
     openSheet,
     completedSteps,
-    totalSteps,
+    availableSteps,
     progressPercentage,
     current,
+    initialResults,
     setDropdownOpen,
     setOpenSheet,
     handleProductChange,
     handleSave,
+    handleLaunchTool,
+    handleEditTool,
     refreshData,
     preview,
   } = useToolsState(products, initialResultsByProduct);
@@ -70,23 +85,8 @@ export default function ProductToolsShell({
     return <ToolsEmptyState />;
   }
 
-  const handleLaunchTool = (toolId: string) => {
-    setOpenSheet(toolId);
-  };
-
-  const handleEditTool = (toolId: string) => {
-    setOpenSheet(toolId);
-  };
-
-  // Convertir les résultats en étapes de workflow
-  const workflowSteps = TOOLS.map(tool => ({
-    id: tool.id,
-    title: tool.label,
-    description: preview(current[tool.id]),
-    status: current[tool.id] ? 'completed' as const : 'pending' as const,
-    color: 'emerald' as const,
-    icon: tool.icon
-  }));
+  // Convertir les résultats en étapes de workflow avec logique intelligente
+  const workflowSteps = WorkflowLogic.generateWorkflowSteps(TOOLS, current, preview);
 
   return (
     <div className="min-h-screen" data-full-height>
@@ -96,7 +96,7 @@ export default function ProductToolsShell({
         isRefreshing={isRefreshing}
         dropdownOpen={dropdownOpen}
         completedSteps={completedSteps}
-        totalSteps={totalSteps}
+        totalSteps={availableSteps}
         progressPercentage={progressPercentage}
         onRefresh={refreshData}
         onToggleDropdown={() => setDropdownOpen(!dropdownOpen)}
@@ -105,6 +105,22 @@ export default function ProductToolsShell({
 
       {/* Contenu principal */}
       <main className="px-6 py-6">
+        {/* Alerte d'incohérence - seulement si on a un productId */}
+        {selectedProductId && (
+          <InconsistencyAlert 
+            results={initialResults}
+            productId={selectedProductId}
+            onCleanup={refreshData}
+          />
+        )}
+
+        {/* Banner informatif selon le statut */}
+        <WorkflowInfoBanner 
+          dmResult={current['qualification_dm']}
+          completedSteps={completedSteps}
+          availableSteps={availableSteps}
+        />
+
         {/* Workflow modernisé */}
         <div className="bg-white/80 backdrop-blur-sm rounded-xl border border-gray-200/60 shadow-sm">
           <div className="p-4 border-b border-gray-100/60">
@@ -117,16 +133,26 @@ export default function ProductToolsShell({
                   Suivez les étapes pour analyser votre produit
                 </p>
               </div>
-              <div className="flex items-center space-x-2 text-sm text-gray-500">
-                <div className={`w-2 h-2 rounded-full ${isRefreshing ? 'bg-blue-500 animate-pulse' : 'bg-green-500'}`}></div>
-                <span>{isRefreshing ? 'Actualisation...' : 'Données à jour'}</span>
+              <div className="flex items-center space-x-4">
+                <div className="flex items-center space-x-2 text-sm text-gray-500">
+                  <div className={`w-2 h-2 rounded-full ${isRefreshing ? 'bg-blue-500 animate-pulse' : 'bg-green-500'}`}></div>
+                  <span>{isRefreshing ? 'Actualisation...' : 'Données à jour'}</span>
+                </div>
+                {selectedProduct && selectedProduct.id && initialResults.length > 0 && (
+                  <ExportButton 
+                    product={selectedProduct as Product & { id: string }}
+                    results={initialResults}
+                    variant="outline"
+                    size="sm"
+                  />
+                )}
               </div>
             </div>
           </div>
           
           <div className="p-4">
             <div className="space-y-3">
-              {workflowSteps.map((step) => (
+              {workflowSteps.map((step: WorkflowStepType) => (
                 <WorkflowStep
                   key={step.id}
                   {...step}
@@ -147,7 +173,13 @@ export default function ProductToolsShell({
                     Comment utiliser les outils
                   </p>
                   <p className="text-xs text-blue-700 mt-1">
-                    Cliquez sur une étape pour lancer l'outil correspondant dans le panneau latéral. Les résultats seront automatiquement sauvegardés.
+                    Cliquez sur une étape pour lancer l'outil correspondant dans le panneau latéral. 
+                    Les résultats seront automatiquement sauvegardés. 
+                    {current['qualification_dm']?.resultKey === 'NOT_DM' && (
+                      <span className="font-medium text-amber-700">
+                        {' '}Les autres outils sont bloqués car le produit n'est pas un dispositif médical.
+                      </span>
+                    )}
                   </p>
                 </div>
               </div>
