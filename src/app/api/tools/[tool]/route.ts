@@ -2,15 +2,6 @@
 import { createClient } from '@/lib/supabase/server';
 import { NextResponse } from 'next/server';
 
-// Liste des outils — inchangée
-const ALLOWED_TOOLS = [
-  'qualification_dm',
-  'risk_analysis',
-  'clinical_evaluation',
-  'technical_documentation',
-] as const;
-type AllowedTool = typeof ALLOWED_TOOLS[number];
-
 interface RequestBody {
   resultKey: string;
   answers: Record<string, 'yes' | 'no'>;
@@ -18,14 +9,11 @@ interface RequestBody {
 
 export async function POST(
   req: Request,
-  { params }: { params: Promise<{ tool: string }> }   // signature gardée
+  { params }: { params: Promise<{ tool: string }> }
 ) {
   try {
-    /* 1 – Paramètre de route ------------------------------------ */
     const { tool } = await params;
-    console.log('Tool received:', tool);
-
-    /* 2 – Body JSON --------------------------------------------- */
+    
     let body: RequestBody;
     try {
       body = await req.json();
@@ -34,28 +22,22 @@ export async function POST(
     }
 
     const { resultKey, answers } = body;
-
-    /* productId via query --------------------------------------- */
     const productId = new URL(req.url).searchParams.get('product');
-    console.log('Request body:', { resultKey, answers });
-    console.log('Product ID from URL:', productId);
 
-    /* validations courtes --------------------------------------- */
-    if (!productId)  return NextResponse.json({ error: 'missing productId' }, { status: 400 });
-    if (!resultKey)  return NextResponse.json({ error: 'missing resultKey' }, { status: 400 });
-    if (!answers)    return NextResponse.json({ error: 'missing answers'  }, { status: 400 });
+    if (!productId) return NextResponse.json({ error: 'missing productId' }, { status: 400 });
+    if (!resultKey) return NextResponse.json({ error: 'missing resultKey' }, { status: 400 });
+    if (!answers) return NextResponse.json({ error: 'missing answers' }, { status: 400 });
 
-    /* 3 – Auth Supabase ----------------------------------------- */
     const supabase = await createClient();
     const { data: { user }, error: authError } = await supabase.auth.getUser();
     if (authError || !user) return NextResponse.json({ error: 'unauthenticated' }, { status: 401 });
 
-    /* 4 – Mapping tool → colonne + update ----------------------- */
+    // Mapping tool → colonne pour la rétrocompatibilité
     const FIELD_MAP = {
-      qualification_dm:  'is_dm',
-      regulation:        'regulation',
-      class_rule11:      'mdr_class',
-      software_safety:   'software_safety',
+      qualification_dm: 'is_dm',
+      regulation: 'regulation',
+      class_rule11: 'mdr_class',
+      software_safety: 'software_safety',
     } as const;
 
     const column = FIELD_MAP[tool as keyof typeof FIELD_MAP];
@@ -63,23 +45,51 @@ export async function POST(
       return NextResponse.json({ error: `No mapping for tool '${tool}'` }, { status: 400 });
     }
 
-    /* Conversion : DM → true, sinon → false pour is_dm ----------- */
+    // Valeur pour la colonne existante (rétrocompatibilité)
     const value = tool === 'qualification_dm'
-      ? resultKey === 'DM'            // DM ➜ true ; NOT_DM (ou autre) ➜ false
-      : resultKey;                    // autres outils : garder la chaîne
+      ? resultKey === 'DM'
+      : resultKey;
 
+    // 1. D'abord, récupérer l'historique existant
+    const { data: product, error: fetchError } = await supabase
+      .from('products')
+      .select('tool_histories')
+      .eq('id', productId)
+      .eq('owner_id', user.id)
+      .single();
+
+    if (fetchError) {
+      console.error('Error fetching product:', fetchError);
+      return NextResponse.json({ error: 'Product not found' }, { status: 404 });
+    }
+
+    // 2. Mettre à jour l'historique
+    const currentHistories = product.tool_histories || {};
+    const updatedHistories = {
+      ...currentHistories,
+      [tool]: {
+        answers,
+        resultKey,
+        timestamp: new Date().toISOString()
+      }
+    };
+
+    // 3. Sauvegarder à la fois la valeur et l'historique
     const { error } = await supabase
       .from('products')
-      .update({ [column]: value })    // on écrit la bonne valeur
+      .update({ 
+        [column]: value,
+        tool_histories: updatedHistories
+      })
       .eq('id', productId)
-      .eq('owner_id', user.id);       // sécurité
+      .eq('owner_id', user.id);
 
     if (error) {
       console.error('Supabase update error:', error);
       return NextResponse.json({ error: 'Database error', details: error.message }, { status: 500 });
     }
 
-    console.log('Update successful');
+    console.log('Update successful with history');
     return NextResponse.json({ ok: true });
 
   } catch (err) {

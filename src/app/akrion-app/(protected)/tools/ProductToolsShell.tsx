@@ -24,6 +24,7 @@ import {
   SheetContent,
   SheetHeader,
   SheetTitle,
+  SheetOverlay,
 } from '@/components/ui/sheet';
 import WizardLite from '@/components/akrion-app/WizardLite';
 
@@ -344,7 +345,7 @@ export default function ProductToolsShell({
         return { ...prev, [selectedProductId]: updated };
       });
       
-      setOpenSheet(null);
+      //setOpenSheet(null);
       setLastRefresh(Date.now());
     } else {
       toast.error('Erreur serveur');
@@ -592,15 +593,20 @@ export default function ProductToolsShell({
       {TOOLS.map(({ id, label, config }) =>
         openSheet === id ? (
           <Sheet key={id} open onOpenChange={() => setOpenSheet(null)}>
+            
+            
             <SheetContent
               side="right"
               className="
                 w-full 
-                max-w-[640px]      
-                lg:max-w-[720px]   
-                overflow-y-auto 
-                bg-white/95 
-                px-8 py-10
+          max-w-[640px]      
+          lg:max-w-[720px]   
+          overflow-y-auto 
+          rounded-l-2xl
+          bg-white/90 
+          backdrop-blur-lg 
+          px-8 py-10 
+          shadow-xl
               "
             >
               <SheetHeader className="mb-8">
@@ -610,10 +616,11 @@ export default function ProductToolsShell({
               </SheetHeader>
 
               <WizardLite
-                config={config}
-                initial={current[id]}
-                onFinish={(answers, rk) => handleSave(id, answers, rk)}
-              />
+  config={config}
+  initial={current[id]}
+  onFinish={(answers, rk) => handleSave(id, answers, rk)}
+  inSheet={true} // ✅ Nouvelle prop pour enlever le fond bleu
+/>
             </SheetContent>
           </Sheet>
         ) : null

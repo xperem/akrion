@@ -30,6 +30,7 @@ export type Database = {
           patient_population: string | null
           regulation: string | null
           software_safety: string | null
+          tool_histories: Json | null
         }
         Insert: {
           created_at?: string | null
@@ -46,6 +47,7 @@ export type Database = {
           patient_population?: string | null
           regulation?: string | null
           software_safety?: string | null
+          tool_histories?: Json | null
         }
         Update: {
           created_at?: string | null
@@ -62,6 +64,7 @@ export type Database = {
           patient_population?: string | null
           regulation?: string | null
           software_safety?: string | null
+          tool_histories?: Json | null
         }
         Relationships: []
       }
