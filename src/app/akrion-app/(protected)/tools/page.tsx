@@ -17,17 +17,14 @@ export default async function ToolsPage() {
     name: p.name,
   })) ?? [];
 
-  if (!products.length) {
-    return <p className="p-10 text-xl">Aucun produit – créez‑en un dans le Dashboard</p>;
-  }
-
   /* résultats par produit ------------------------------------------ */
   const initialResultsByProduct: Record<string, {
     tool: string;
     result: { answers: Record<string, 'yes' | 'no'>; resultKey: string };
   }[]> = {};
 
-  for (const p of productsRaw!) {
+  // Traiter les résultats même si products est vide pour éviter les erreurs
+  for (const p of productsRaw || []) {
     const results = [];
 
     if (typeof p.is_dm === 'boolean') {
@@ -73,6 +70,7 @@ export default async function ToolsPage() {
     initialResultsByProduct[p.id] = results;
   }
 
+  // Toujours retourner ProductToolsShell qui gère maintenant le cas "aucun produit"
   return (
     <ProductToolsShell
       products={products}

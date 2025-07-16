@@ -19,7 +19,34 @@ export default function DashboardClient({ products }: Props) {
   const hasProducts = products.length > 0;
 
   const handleDeleteProduct = async (productId: string) => {
-    if (!confirm('Êtes-vous sûr de vouloir supprimer ce produit ? Cette action est irréversible.')) {
+    // Trouver le produit pour afficher son nom
+    const product = products.find(p => p.id === productId);
+    const productName = product?.name || 'ce produit';
+    
+    // Créer un modal de confirmation personnalisé
+    const confirmDelete = window.confirm(
+      `⚠️ Suppression définitive\n\n` +
+      `Êtes-vous sûr de vouloir supprimer "${productName}" ?\n\n` +
+      `Cette action est irréversible et supprimera :\n` +
+      `• Toutes les données du produit\n` +
+      `• Les analyses réglementaires associées\n` +
+      `• L'historique des résultats\n\n` +
+      `Tapez "SUPPRIMER" pour confirmer :`
+    );
+    
+    if (!confirmDelete) {
+      return;
+    }
+    
+    // Deuxième confirmation avec saisie
+    const confirmationText = window.prompt(
+      `Pour confirmer la suppression de "${productName}", tapez exactement : SUPPRIMER`
+    );
+    
+    if (confirmationText !== 'SUPPRIMER') {
+      if (confirmationText !== null) { // null = annulation
+        alert('❌ Confirmation incorrecte. Suppression annulée.');
+      }
       return;
     }
     
@@ -29,14 +56,16 @@ export default function DashboardClient({ products }: Props) {
       });
       
       if (response.ok) {
+        // Afficher un message de succès
+        alert(`✅ "${productName}" a été supprimé avec succès.`);
         // Recharger la page pour mettre à jour la liste
         window.location.reload();
       } else {
-        alert('Erreur lors de la suppression du produit');
+        alert('❌ Erreur lors de la suppression du produit. Veuillez réessayer.');
       }
     } catch (error) {
       console.error('Erreur:', error);
-      alert('Erreur lors de la suppression du produit');
+      alert('❌ Erreur de connexion. Veuillez vérifier votre connexion et réessayer.');
     }
   };
 
